@@ -27,6 +27,7 @@ Use `MethodReferencesExamples.java` for solutions.
 - Map to emails (`User::email`), filter company emails (`isCompanyEmail`), map to domain (`domainOf`), group by domain with names, sort each list, print.
 
 ## Spring-flavored labs
+
 1. Map `List<UserDto>` to emails using `UserDto::getEmail`; print.
 2. Filter emails with `EmailValidator::isCompanyEmail` (static ref) and print.
 3. Sort `List<OrderDto>` by `OrderDto::getCreatedAt` using comparator with method refs.

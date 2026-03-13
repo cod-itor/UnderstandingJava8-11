@@ -31,6 +31,7 @@ Use `StreamAPI/StreamAPIExamples.java` for solutions.
 - Print a summary string.
 
 ## Spring-flavored labs
+
 1. From `List<UserDto>`, collect active users' emails sorted; print.
 2. From `List<OrderDto>`, sum amounts where status = PAID; print total.
 3. Group orders by `status` into `Map<Status, List<OrderDto>>`; print map.

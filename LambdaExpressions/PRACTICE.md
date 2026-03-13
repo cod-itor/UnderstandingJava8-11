@@ -29,6 +29,7 @@ Build a **Calculator CLI** with lambdas:
 - Print the result; handle unknown symbols with a default lambda that returns 0 and logs an error.
 
 ## Spring-flavored labs
+
 1. Sort a list of `UserDto` by `createdAt` using a lambda comparator; return the list.
 2. Filter a list of `OrderDto` to status = PAID using a lambda predicate; print ids.
 3. Map a list of `Product` to uppercased names with a lambda; collect and print.
