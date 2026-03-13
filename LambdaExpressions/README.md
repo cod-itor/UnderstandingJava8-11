@@ -127,6 +127,7 @@ task.run();
 - `Comparator.comparing(UserDto::joinedAt)` → a comparator you can pass to `sort`/`sorted`.
 
 ### Common Spring-ish writes and results
+
 - `list.forEach(u -> log.info(u.getEmail()));` → logs each email (side effect only).
 - `users.stream().map(UserDto::getEmail).toList();` → returns new list of emails (no mutation of original).
 - `Runnable task = () -> service.sendWelcome("ana"); task.run();` → invokes your service method once.

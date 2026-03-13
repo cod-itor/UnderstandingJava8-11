@@ -193,6 +193,23 @@ public class ForEachExamples {
             .sorted()
             .forEach(n -> System.out.print(n + " "));
         System.out.println();
+
+        // Quick "if you write this… you get this" samples
+        System.out.println("New list with evens doubled (stream -> collect):");
+        List<Integer> evensDoubled = numbers.stream()
+            .filter(n -> n % 2 == 0)
+            .map(n -> n * 2)
+            .toList();
+        System.out.println(evensDoubled); // [4, 8, 12, 16, 20]
+
+        System.out.println("Distinct sorted domains from emails:");
+        List<String> emails = Arrays.asList("a@x.com", "b@y.com", "c@x.com");
+        List<String> domains = emails.stream()
+            .map(e -> e.split("@")[1])
+            .distinct()
+            .sorted()
+            .toList();
+        System.out.println(domains); // [x.com, y.com]
     }
     
     /**

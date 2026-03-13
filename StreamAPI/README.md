@@ -144,7 +144,7 @@ The declarative approach makes code intent clear at first glance.
 
 Operations don't execute until a terminal operation is called, improving performance:
 
-```java
+````java
 // Only creates stream, no execution
 Stream<Integer> stream = numbers.stream()
     .filter(n -> {
@@ -157,8 +157,23 @@ Stream<Integer> stream = numbers.stream()
     });
 
 // Only NOW does the processing happen
+    ```
+
+    ## 🧭 If you write this… you get this
+    - `list.stream().filter(n -> n % 2 == 0).toList();` → returns new list of evens; original list untouched.
+    - `list.stream().map(String::toUpperCase).toList();` → new list of uppercased strings.
+    - `list.stream().sorted().forEach(System.out::println);` → prints elements in sorted order.
+    - `orders.stream().mapToDouble(Order::amount).sum();` → a double total of all order amounts.
+    - `emails.stream().map(e -> e.split("@")[1]).distinct().sorted().toList();` → sorted unique domains.
+
+    ### Common Spring-ish writes and results
+    - `users.stream().filter(UserDto::isActive).map(UserDto::getEmail).toList();` → DTO processing: active users’ emails as a new list.
+    - `orders.stream().filter(o -> o.status()==Status.PAID).mapToDouble(OrderDto::amount).sum();` → total of paid orders.
+    - `headers.entrySet().stream().peek(e -> log.info(e.getKey()+": "+e.getValue())).count();` → logs each header, returns count.
+    - `Optional<UserDto> userOpt -> userOpt.stream().map(UserDto::getEmail).toList();` → 0 or 1 emails collected safely.
+    - `list.stream().filter(Objects::nonNull).map(String::trim).toList();` → cleans nulls and trims strings.
 stream.forEach(System.out::println);
-```
+````
 
 ### 3. **Chainability**
 

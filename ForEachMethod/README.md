@@ -119,6 +119,7 @@ names.forEach(System.out::println);
 Aligns with functional programming paradigms:
 
 ## 🧭 If you write this… you get this
+
 - `list.forEach(System.out::println);` → prints each element in order.
 - `items.forEach(i -> log.info(i));` → runs a side effect for each element; no return.
 - `map.forEach((k,v) -> System.out.println(k+":"+v));` → iterates key/value entries.
@@ -126,6 +127,7 @@ Aligns with functional programming paradigms:
 - `list.forEach(x -> { if (x > 3) return; });` → ⚠️ does NOT break outer loop; return only exits lambda.
 
 ### Common Spring-ish writes and results
+
 - `headers.forEach((k,v) -> log.info(k+": "+v));` → logs all headers.
 - `users.forEach(u -> service.notify(u));` → calls your service for each user.
 - `List<String> ids = new ArrayList<>(); orders.forEach(o -> ids.add(o.id()));` → fills another list (prefer streams for transforms).
