@@ -192,6 +192,63 @@ public class StreamAPIExamples {
         boolean hasEven = numbers.stream().anyMatch(n -> n % 2 == 0);
         System.out.println("Has even: " + hasEven);
     }
+
+    /**
+     * Quick "If you write this... you get this" (runnable outcomes)
+     */
+    public static void demonstrateIfYouWriteThis() {
+        System.out.println("\n=== If you write this... you get this (streams) ===");
+
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        List<Integer> evens = numbers.stream()
+            .filter(n -> n % 2 == 0)
+            .toList();
+        System.out.println("list.stream().filter(n -> n % 2 == 0).toList() => " + evens + " | original: " + numbers);
+
+        List<String> names = Arrays.asList("ana", "bob");
+        List<String> upper = names.stream()
+            .map(String::toUpperCase)
+            .toList();
+        System.out.println("list.stream().map(String::toUpperCase).toList() => " + upper);
+
+        List<Integer> unsorted = Arrays.asList(5, 1, 3, 2);
+        System.out.print("list.stream().sorted().forEach(...) => ");
+        unsorted.stream().sorted().forEach(n -> System.out.print(n + " "));
+        System.out.println();
+
+        List<OrderDto> orders = Arrays.asList(
+            new OrderDto(Status.PAID, 10.5),
+            new OrderDto(Status.PENDING, 5.0),
+            new OrderDto(Status.PAID, 7.5)
+        );
+        double totalPaid = orders.stream()
+            .filter(o -> o.status() == Status.PAID)
+            .mapToDouble(OrderDto::amount)
+            .sum();
+        System.out.println("orders.stream().filter(PAID).mapToDouble(amount).sum() => " + totalPaid);
+
+        List<String> emails = Arrays.asList("a@x.com", "b@y.com", "c@x.com");
+        List<String> domains = emails.stream()
+            .map(e -> e.split("@")[1])
+            .distinct()
+            .sorted()
+            .toList();
+        System.out.println("emails.stream().map(domain).distinct().sorted().toList() => " + domains);
+
+        Optional<UserDto> userOpt = Optional.of(new UserDto("anna", true, "anna@acme.com"));
+        List<String> collectedEmails = userOpt.stream()
+            .filter(UserDto::isActive)
+            .map(UserDto::getEmail)
+            .toList();
+        System.out.println("Optional<UserDto>.stream().filter(active).map(email).toList() => " + collectedEmails);
+
+        List<String> messy = Arrays.asList(" one ", null, "two");
+        List<String> cleaned = messy.stream()
+            .filter(Objects::nonNull)
+            .map(String::trim)
+            .toList();
+        System.out.println("list.stream().filter(nonNull).map(trim).toList() => " + cleaned);
+    }
     
     /**
      * PRACTICAL EXAMPLE: Process a list of students
@@ -347,6 +404,37 @@ public class StreamAPIExamples {
         String getName() { return name; }
         int getGrade() { return grade; }
     }
+
+    static class OrderDto {
+        private final Status status;
+        private final double amount;
+
+        OrderDto(Status status, double amount) {
+            this.status = status;
+            this.amount = amount;
+        }
+
+        Status status() { return status; }
+        double amount() { return amount; }
+    }
+
+    enum Status { PAID, PENDING }
+
+    static class UserDto {
+        private final String name;
+        private final boolean active;
+        private final String email;
+
+        UserDto(String name, boolean active, String email) {
+            this.name = name;
+            this.active = active;
+            this.email = email;
+        }
+
+        boolean isActive() { return active; }
+        String getEmail() { return email; }
+        public String toString() { return name + "(" + email + ")"; }
+    }
     
     static Optional<Stream<String>> findUsersByRole(String role) {
         if ("ADMIN".equals(role)) {
@@ -371,6 +459,7 @@ public class StreamAPIExamples {
         // Stream Operations
         demonstrateIntermediateOperations();
         demonstrateTerminalOperations();
+    demonstrateIfYouWriteThis();
         
         // Real-World Example
         demonstrateRealWorldExample();
