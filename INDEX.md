@@ -12,6 +12,7 @@ Start here and follow the recommended learning path below!
 
 1. Read **VISUAL_GUIDE.md** - Visual diagrams and quick comparisons
 2. Read **QUICK_REFERENCE.md** - At-a-glance summaries
+3. Read **ForEach_Lambda_Stream_COMPARISON.md** - Side-by-side when/why/how with outputs
 
 ### Want deep understanding?
 

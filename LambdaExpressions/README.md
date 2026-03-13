@@ -118,6 +118,20 @@ task.run();
 - Hard to read the actual logic
 - Type safe but cumbersome
 
+## 🧭 If you write this… you get this
+
+- `() -> System.out.println("hi")` → a `Runnable` that, when run, prints `hi`.
+- `(a, b) -> a + b` assigned to `BiFunction<Integer,Integer,Integer>` → call `apply(2,3)` returns `5`.
+- `name -> name.toUpperCase()` assigned to `Function<String,String>` → `apply("bob")` returns `"BOB"`.
+- `(x, y) -> { int sum = x + y; return sum * 2; }` → multi-line lambda with local variables.
+- `Comparator.comparing(UserDto::joinedAt)` → a comparator you can pass to `sort`/`sorted`.
+
+### Common Spring-ish writes and results
+- `list.forEach(u -> log.info(u.getEmail()));` → logs each email (side effect only).
+- `users.stream().map(UserDto::getEmail).toList();` → returns new list of emails (no mutation of original).
+- `Runnable task = () -> service.sendWelcome("ana"); task.run();` → invokes your service method once.
+- `Supplier<String> baseUrl = () -> "https://api.example.com"; baseUrl.get();` → lazily returns the URL.
+
 ### After Java 8 (Lambda Expression)
 
 ```java
