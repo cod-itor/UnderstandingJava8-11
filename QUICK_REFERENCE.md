@@ -2,13 +2,18 @@
 
 ## 📋 At a Glance
 
-| Feature                | Version  | What It Does                          | Problem It Solves               | Replaces                 |
-| ---------------------- | -------- | ------------------------------------- | ------------------------------- | ------------------------ |
-| **Lambda Expressions** | Java 8   | Anonymous functions passed as values  | Verbose anonymous classes       | Anonymous inner classes  |
-| **forEach()**          | Java 8   | Iterate with lambda expressions       | Boilerplate loop syntax         | Enhanced for loops       |
-| **Stream API**         | Java 8   | Functional data processing pipelines  | Complex loop logic              | Traditional nested loops |
-| **Optional**           | Java 8   | Container for possibly-null values    | NullPointerException            | Null checks everywhere   |
-| **Pattern Matching**   | Java 14+ | Type checking and binding in one step | Manual casting after instanceof | instanceof + type cast   |
+| Feature                     | Version  | What It Does                          | Problem It Solves                    | Replaces/Improves          |
+| --------------------------- | -------- | ------------------------------------- | ------------------------------------ | -------------------------- |
+| **Lambda Expressions**      | Java 8   | Anonymous functions passed as values  | Verbose anonymous classes            | Anonymous inner classes    |
+| **Functional Interfaces**   | Java 8   | Single-abstract-method contracts      | Boilerplate interfaces for callbacks | Verbose custom interfaces  |
+| **Method References**       | Java 8   | Shorthand for lambdas calling methods | Noisy lambdas that just delegate     | Inline lambdas             |
+| **Default Methods**         | Java 8   | Behavior inside interfaces            | Breaking API changes on new methods  | Manual mixins/abstract     |
+| **forEach()**               | Java 8   | Iterate with lambda expressions       | Boilerplate loop syntax              | Enhanced for loops         |
+| **Stream API**              | Java 8   | Functional data processing pipelines  | Complex loop logic                   | Traditional nested loops   |
+| **Optional**                | Java 8   | Container for possibly-null values    | NullPointerException                 | Null checks everywhere     |
+| **Date-Time API (java.time)** | Java 8 | Immutable, timezone-safe date/time    | `java.util.Date`/`Calendar` issues   | Legacy date classes        |
+| **Base64 Utilities**        | Java 8   | Encode/decode binary for transport    | Unsafe ad-hoc encoders               | Custom/legacy encoders     |
+| **Pattern Matching**        | Java 14+ | Type checking and binding in one step | Manual casting after instanceof      | instanceof + type cast     |
 
 ---
 
@@ -42,6 +47,41 @@
 - **Benefit**: No more null checks, type-safe
 - **Don't Use When**: Value always present
 
+### Functional Interfaces
+
+- **Use When**: You need a contract for lambdas/method refs (SAM)
+- **Example**: `Predicate<User> active = User::isActive;`
+- **Benefit**: Compose behavior, enforce single responsibility
+- **Don't Use When**: You need multiple abstract methods (use class instead)
+
+### Method References
+
+- **Use When**: Lambda just delegates to an existing method
+- **Example**: `emails.forEach(System.out::println)`
+- **Benefit**: Cleaner, more readable than equivalent lambda
+- **Don't Use When**: You need inline logic or state
+
+### Default Methods
+
+- **Use When**: Evolving interfaces without breaking implementers
+- **Example**: `default void audit(String msg) { ... }`
+- **Benefit**: Add behavior/mixins; reuse helpers
+- **Don't Use When**: Behavior is highly stateful; prefer class
+
+### Date-Time API (java.time)
+
+- **Use When**: Handling dates, times, zones, durations
+- **Example**: `ZonedDateTime nowUtc = Instant.now().atZone(ZoneId.of("UTC"));`
+- **Benefit**: Immutable, timezone-safe, better than `Date`
+- **Don't Use When**: Working with legacy APIs without conversion
+
+### Base64 Utilities
+
+- **Use When**: Need to transport binary/text safely (headers, tokens)
+- **Example**: `Base64.getUrlEncoder().withoutPadding().encodeToString(bytes)`
+- **Benefit**: Standard, safe encoders (basic/url/mime)
+- **Don't Use When**: You need encryption (Base64 is encoding only)
+
 ### Pattern Matching
 
 - **Use When**: Checking type and casting
@@ -58,10 +98,16 @@ Foundation
     ↓
 Lambda Expressions (Java 8)
     ↓
+Functional Interfaces (Java 8)
+    ↓
+├─→ Method References (Java 8)
+├─→ Default Methods (Java 8)
 ├─→ forEach() Method (Java 8)
-├─→ Stream API (Java 8) ← Builds heavily on Lambda
-├─→ Optional (Java 8) ← Complements Stream API
-└─→ Functional Interfaces ← Enables all of above
+├─→ Stream API (Java 8)
+├─→ Optional (Java 8)
+├─→ Date-Time API (Java 8)
+├─→ Base64 Utilities (Java 8)
+└─→ (All together enable clearer modern Java)
 
 Advanced
     ↓

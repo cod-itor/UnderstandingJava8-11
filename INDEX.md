@@ -30,21 +30,35 @@ Follow the **Recommended Learning Path** below
 - ⏱️ **Time**: 90 minutes
 - 🎯 **Goal**: Understand anonymous functions, functional interfaces
 
-#### Day 3: forEach() Method
+#### Day 3: Functional Interfaces + Method References
+
+- 📖 **Read**: `FunctionalInterfaces/README.md`, `MethodReferences/README.md`
+- 💻 **Run**: `FunctionalInterfaces/FunctionalInterfacesExamples.java`, `MethodReferences/MethodReferencesExamples.java`
+- ⏱️ **Time**: 90 minutes
+- 🎯 **Goal**: Understand SAM rules, composition, and method reference patterns
+
+#### Day 4: Default Methods
+
+- 📖 **Read**: `DefaultMethods/README.md`
+- 💻 **Run**: `DefaultMethods/DefaultMethodsExamples.java`
+- ⏱️ **Time**: 45 minutes
+- 🎯 **Goal**: Learn interface evolution, conflict resolution, mixin-style helpers
+
+#### Day 5: forEach() Method
 
 - 📖 **Read**: `ForEachMethod/README.md`
 - 💻 **Run**: `ForEachMethod/ForEachExamples.java`
 - ⏱️ **Time**: 60 minutes
 - 🎯 **Goal**: Learn to iterate with lambdas
 
-#### Day 4-5: Optional Class
+#### Day 6-7: Optional Class
 
 - 📖 **Read**: `OptionalClass/README.md`
 - 💻 **Run**: `OptionalClass/OptionalExamples.java`
 - ⏱️ **Time**: 90 minutes
 - 🎯 **Goal**: Understand null-safe programming
 
-#### Day 6-7: Stream API (Part 1)
+#### Day 8-9: Stream API (Part 1)
 
 - 📖 **Read**: `StreamAPI/README.md` (first half)
 - 💻 **Run**: `StreamAPI/StreamAPIExamples.java` (parts 1-3)
@@ -53,21 +67,35 @@ Follow the **Recommended Learning Path** below
 
 ### **Week 2: Intermediate & Advanced**
 
-#### Day 8-9: Stream API (Part 2)
+#### Day 10-11: Stream API (Part 2)
 
 - 📖 **Read**: `StreamAPI/README.md` (second half)
 - 💻 **Run**: `StreamAPI/StreamAPIExamples.java` (parts 4-7)
 - ⏱️ **Time**: 120 minutes
 - 🎯 **Goal**: Terminal operations, real-world examples, lazy evaluation
 
-#### Day 10-11: Pattern Matching (Java 14+)
+#### Day 12: Date-Time API
+
+- 📖 **Read**: `DateTimeAPI/README.md`
+- 💻 **Run**: `DateTimeAPI/DateTimeExamples.java`
+- ⏱️ **Time**: 45 minutes
+- 🎯 **Goal**: Work with Local/Instant/Zoned types, Duration/Period, formatting
+
+#### Day 13: Base64 Utilities
+
+- 📖 **Read**: `Base64Encoding/README.md`
+- 💻 **Run**: `Base64Encoding/Base64Examples.java`
+- ⏱️ **Time**: 20 minutes
+- 🎯 **Goal**: Encode/decode safely for tokens, payloads
+
+#### Day 14: Pattern Matching (Java 14+)
 
 - 📖 **Read**: `PatternMatching/README.md`
 - 💻 **Run**: `PatternMatching/PatternMatchingExamples.java`
 - ⏱️ **Time**: 90 minutes
 - 🎯 **Goal**: Modern type checking and pattern matching
 
-#### Day 12-14: Integration & Practice
+#### Day 15-16: Integration & Practice
 
 - 📖 **Read**: `README.md` - Master guide
 - 📖 **Review**: `VISUAL_GUIDE.md` - Visual reference
@@ -103,9 +131,29 @@ Java8-11/
 │   ├── README.md            └─ 📖 Optional documentation
 │   └── OptionalExamples.java    └─ 💻 18+ runnable examples
 │
+├── FunctionalInterfaces/    📖 FOUNDATIONS
+│   ├── README.md            └─ 📖 SAM rules, built-ins, composition
+│   └── FunctionalInterfacesExamples.java └─ 💻 Validation, mapping, comparator chains
+│
+├── MethodReferences/        📖 SHORTHANDS
+│   ├── README.md            └─ 📖 Static/bound/unbound/constructor refs
+│   └── MethodReferencesExamples.java └─ 💻 Streams, collectors, factories
+│
+├── DefaultMethods/          📖 INTERFACE EVOLUTION
+│   ├── README.md            └─ 📖 Defaults, conflict resolution
+│   └── DefaultMethodsExamples.java └─ 💻 Mixins, helpers
+│
 ├── StreamAPI/               📖 POWER FEATURE
 │   ├── README.md            └─ 📖 Comprehensive stream guide
 │   └── StreamAPIExamples.java   └─ 💻 15+ runnable examples
+│
+├── DateTimeAPI/             📖 TIMEZONE-SAFE DATES
+│   ├── README.md            └─ 📖 Local vs Zoned vs Instant, Duration/Period
+│   └── DateTimeExamples.java └─ 💻 Scheduling, formatting
+│
+├── Base64Encoding/          📖 UTILITY
+│   ├── README.md            └─ 📖 Encoders/decoders, URL-safe
+│   └── Base64Examples.java   └─ 💻 Tokens, payloads
 │
 └── PatternMatching/         📖 MODERN SYNTAX
     ├── README.md            └─ 📖 Pattern matching (Java 14+)
@@ -145,16 +193,21 @@ Java8-11/
 
 ## 📊 Content at a Glance
 
-| File               | Type      | Focus                      | Time    | Level        |
-| ------------------ | --------- | -------------------------- | ------- | ------------ |
-| README.md          | Guide     | Overview & connections     | 30 min  | Beginner     |
-| QUICK_REFERENCE.md | Reference | Comparisons & quick lookup | 20 min  | Beginner     |
-| VISUAL_GUIDE.md    | Visual    | Diagrams & flowcharts      | 30 min  | Beginner     |
-| LambdaExpressions/ | Tutorial  | Foundation                 | 90 min  | Beginner     |
-| ForEachMethod/     | Tutorial  | Simple iteration           | 60 min  | Beginner     |
-| OptionalClass/     | Tutorial  | Null safety                | 90 min  | Intermediate |
-| StreamAPI/         | Tutorial  | Data processing            | 120 min | Intermediate |
-| PatternMatching/   | Tutorial  | Modern syntax              | 90 min  | Intermediate |
+| File/Folder            | Type      | Focus                               | Time    | Level        |
+| ---------------------- | --------- | ----------------------------------- | ------- | ------------ |
+| README.md              | Guide     | Overview & connections              | 30 min  | Beginner     |
+| QUICK_REFERENCE.md     | Reference | Comparisons & quick lookup          | 20 min  | Beginner     |
+| VISUAL_GUIDE.md        | Visual    | Diagrams & flowcharts               | 30 min  | Beginner     |
+| LambdaExpressions/     | Tutorial  | Foundation                          | 90 min  | Beginner     |
+| FunctionalInterfaces/  | Tutorial  | SAM rules, built-ins, composition   | 60 min  | Beginner     |
+| MethodReferences/      | Tutorial  | Lambdas → method refs               | 30 min  | Beginner     |
+| DefaultMethods/        | Tutorial  | Interface evolution & mixins        | 30 min  | Beginner     |
+| ForEachMethod/         | Tutorial  | Simple iteration                    | 60 min  | Beginner     |
+| OptionalClass/         | Tutorial  | Null safety                         | 90 min  | Intermediate |
+| StreamAPI/             | Tutorial  | Data processing                     | 120 min | Intermediate |
+| DateTimeAPI/           | Tutorial  | Time zones, Duration/Period, format | 45 min  | Intermediate |
+| Base64Encoding/        | Tutorial  | Encoding/decoding for transport     | 20 min  | Beginner     |
+| PatternMatching/       | Tutorial  | Modern syntax (Java 14+)            | 90 min  | Intermediate |
 
 ---
 
