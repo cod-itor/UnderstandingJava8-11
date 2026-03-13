@@ -23,3 +23,10 @@ Use `FunctionalInterfacesExamples.java` for solutions.
 ## Mini Project
 
 **Rule Engine Lite**: Create a `List<Op>` discounts (e.g., 10% off, minus 5, floor at 0). Compose them with `andThen` and apply to a starting price. Print the final price and show how changing the list changes the outcome.
+
+## Spring-flavored labs
+1. Define `@FunctionalInterface Validator<T> { boolean isValid(T t); }` and validate emails from a list; print valid ones.
+2. Create `RetryPolicy` as `Function<Throwable, Boolean>` that allows retry for `IOException`; test with two exception types.
+3. Build `Mapper<UserEntity, UserDto>` and map a list of entities to DTOs using `stream().map(mapper::map)`.
+4. Use `Predicate<OrderDto>` to keep orders over 100 and status PAID; print ids.
+5. Compose `Function<String,String>` to trim and lowercase incoming request headers; apply to a sample list and print.

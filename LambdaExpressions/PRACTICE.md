@@ -27,3 +27,10 @@ Build a **Calculator CLI** with lambdas:
 - Register operations in `Map<String, Operation>` (e.g., "+", "-", "\*", "/").
 - Read hard-coded expressions like `"3 * 4"` and pick the lambda by symbol.
 - Print the result; handle unknown symbols with a default lambda that returns 0 and logs an error.
+
+## Spring-flavored labs
+1. Sort a list of `UserDto` by `createdAt` using a lambda comparator; return the list.
+2. Filter a list of `OrderDto` to status = PAID using a lambda predicate; print ids.
+3. Map a list of `Product` to uppercased names with a lambda; collect and print.
+4. Build `BiFunction<String,Integer,String>` that returns `"{user} has {n} notifications"`; log it.
+5. Create a `Runnable` lambda that simulates an async task (prints "sending email"); run it.

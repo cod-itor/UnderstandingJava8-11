@@ -213,11 +213,11 @@ Java8-11/
 
 ## 📊 Content at a Glance
 
-| File/Folder           | Type          | Focus                               | Time    | Level        |
-| --------------------- | ------------- | ----------------------------------- | ------- | ------------ |
-| README.md             | Guide         | Overview & connections              | 30 min  | Beginner     |
-| QUICK_REFERENCE.md    | Reference     | Comparisons & quick lookup          | 20 min  | Beginner     |
-| VISUAL_GUIDE.md       | Visual        | Diagrams & flowcharts               | 30 min  | Beginner     |
+| File/Folder           | Type              | Focus                               | Time    | Level        |
+| --------------------- | ----------------- | ----------------------------------- | ------- | ------------ |
+| README.md             | Guide             | Overview & connections              | 30 min  | Beginner     |
+| QUICK_REFERENCE.md    | Reference         | Comparisons & quick lookup          | 20 min  | Beginner     |
+| VISUAL_GUIDE.md       | Visual            | Diagrams & flowcharts               | 30 min  | Beginner     |
 | LambdaExpressions/    | Tutorial+Practice | Foundation + exercises              | 90 min  | Beginner     |
 | FunctionalInterfaces/ | Tutorial+Practice | SAM rules, built-ins, composition   | 60 min  | Beginner     |
 | MethodReferences/     | Tutorial+Practice | Lambdas → method refs               | 30 min  | Beginner     |
