@@ -1,6 +1,7 @@
 # Date-Time API (java.time) - Java 8+
 
 ## 🧭 Key Types
+
 - `LocalDate`, `LocalTime`, `LocalDateTime`: date/time without zone
 - `ZonedDateTime`: date/time with zone
 - `Instant`: machine timestamp (UTC)
@@ -11,6 +12,7 @@
 ---
 
 ## ✨ Why `java.time`?
+
 - Immutable and thread-safe
 - Clear separation of human date-time vs. machine timestamps
 - Better timezone handling vs. `java.util.Date` / `Calendar`
@@ -18,6 +20,7 @@
 ---
 
 ## 🛠️ Common Patterns
+
 ```java
 LocalDate today = LocalDate.now();
 LocalDate nextWeek = today.plusWeeks(1);
@@ -36,6 +39,7 @@ LocalDateTime parsed = LocalDateTime.parse(formatted, iso);
 ---
 
 ## 🌍 Real-World Scenarios
+
 - Scheduling across time zones (`withZoneSameInstant`)
 - SLA / timeout calculations with `Duration`
 - Subscription and trial periods with `Period`
@@ -44,6 +48,7 @@ LocalDateTime parsed = LocalDateTime.parse(formatted, iso);
 ---
 
 ## 📌 Tips
+
 - Use `Instant` for storage and comparisons; convert to `ZonedDateTime` for display.
 - Normalize time zones at boundaries (e.g., database writes/reads).
 - Prefer `DateTimeFormatter` with explicit patterns; avoid locale surprises.
@@ -51,6 +56,7 @@ LocalDateTime parsed = LocalDateTime.parse(formatted, iso);
 ---
 
 ## ⚠️ Pitfalls
+
 - Avoid mixing legacy `Date`/`Calendar` without converting (`Date.from(instant)` / `date.toInstant()`).
 - DST transitions: prefer `withZoneSameInstant` rather than manual offsets.
 - Use `truncatedTo(ChronoUnit.MINUTES)` to align times when comparing.

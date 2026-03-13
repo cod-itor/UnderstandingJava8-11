@@ -73,63 +73,63 @@ Java8-11/
    - Key Concept: Iterating with lambda expressions
 
 3. **Then: Functional Interfaces + Method References**
-    - Why: Core building blocks for lambdas/streams and clean reuse
-    - Time: 45 minutes
-    - Folders: `FunctionalInterfaces/`, `MethodReferences/`
-    - Key Concept: SAM rules, constructor refs, static/instance refs
+   - Why: Core building blocks for lambdas/streams and clean reuse
+   - Time: 45 minutes
+   - Folders: `FunctionalInterfaces/`, `MethodReferences/`
+   - Key Concept: SAM rules, constructor refs, static/instance refs
 
 4. **Then: Default Methods**
-    - Why: Interface evolution + mixin-like helpers
-    - Time: 20 minutes
-    - Folder: `DefaultMethods/`
-    - Key Concept: Add behavior without breaking implementers
+   - Why: Interface evolution + mixin-like helpers
+   - Time: 20 minutes
+   - Folder: `DefaultMethods/`
+   - Key Concept: Add behavior without breaking implementers
 
 5. **Then: Stream API**
-    - Why: Functional data processing
-    - Time: 1 hour
-    - Folder: `StreamAPI/`
-    - Key Concept: Powerful data transformation pipelines
+   - Why: Functional data processing
+   - Time: 1 hour
+   - Folder: `StreamAPI/`
+   - Key Concept: Powerful data transformation pipelines
 
 6. **Then: Optional Class**
-    - Why: Null safety (complements Streams)
-    - Time: 45 minutes
-    - Folder: `OptionalClass/`
-    - Key Concept: Safer than null checking
+   - Why: Null safety (complements Streams)
+   - Time: 45 minutes
+   - Folder: `OptionalClass/`
+   - Key Concept: Safer than null checking
 
 7. **Then: Date-Time API**
-    - Why: Immutable, timezone-safe scheduling and timestamps
-    - Time: 45 minutes
-    - Folder: `DateTimeAPI/`
-    - Key Concept: Local vs Zoned vs Instant; Duration/Period; formatting
+   - Why: Immutable, timezone-safe scheduling and timestamps
+   - Time: 45 minutes
+   - Folder: `DateTimeAPI/`
+   - Key Concept: Local vs Zoned vs Instant; Duration/Period; formatting
 
 8. **Then: Base64 Utilities**
-    - Why: Transport binary data safely (auth tokens, payloads)
-    - Time: 15 minutes
-    - Folder: `Base64Encoding/`
-    - Key Concept: Basic vs URL vs MIME encoders, charset safety
+   - Why: Transport binary data safely (auth tokens, payloads)
+   - Time: 15 minutes
+   - Folder: `Base64Encoding/`
+   - Key Concept: Basic vs URL vs MIME encoders, charset safety
 
 9. **Finally: Pattern Matching**
-    - Why: Modern type checking (Java 14+)
-    - Time: 30 minutes
-    - Folder: `PatternMatching/`
-    - Key Concept: Type checking made elegant
+   - Why: Modern type checking (Java 14+)
+   - Time: 30 minutes
+   - Folder: `PatternMatching/`
+   - Key Concept: Type checking made elegant
 
 ---
 
 ## 📊 Feature Comparison
 
-| Feature                | Version | Purpose                               | Replaces/Improves        | Complexity |
-| ---------------------- | ------- | ------------------------------------- | ------------------------ | ---------- |
-| Lambda Expressions     | 8       | Concise anonymous functions           | Anonymous classes        | ⭐⭐       |
-| Functional Interfaces  | 8       | SAM contracts; foundation for lambdas | Verbose interfaces       | ⭐⭐       |
-| Method References      | 8       | Shortcut to reuse existing methods    | Lambdas calling methods  | ⭐        |
-| Default Methods        | 8       | Interface evolution + helpers         | Manual mixins/abstract   | ⭐⭐       |
-| forEach()              | 8       | Iterator method                       | Enhanced for loop        | ⭐        |
-| Stream API             | 8       | Functional data processing            | Traditional loops        | ⭐⭐⭐     |
-| Optional               | 8       | Null safety                           | Null checks              | ⭐⭐       |
-| Date-Time API          | 8       | Immutable, timezone-aware dates/times | java.util.Date/Calendar  | ⭐⭐       |
-| Base64 Utilities       | 8       | Encode/decode for transport           | Custom encoders          | ⭐        |
-| Pattern Matching       | 14+     | Modern type checking                  | instanceof + cast        | ⭐⭐       |
+| Feature               | Version | Purpose                               | Replaces/Improves       | Complexity |
+| --------------------- | ------- | ------------------------------------- | ----------------------- | ---------- |
+| Lambda Expressions    | 8       | Concise anonymous functions           | Anonymous classes       | ⭐⭐       |
+| Functional Interfaces | 8       | SAM contracts; foundation for lambdas | Verbose interfaces      | ⭐⭐       |
+| Method References     | 8       | Shortcut to reuse existing methods    | Lambdas calling methods | ⭐         |
+| Default Methods       | 8       | Interface evolution + helpers         | Manual mixins/abstract  | ⭐⭐       |
+| forEach()             | 8       | Iterator method                       | Enhanced for loop       | ⭐         |
+| Stream API            | 8       | Functional data processing            | Traditional loops       | ⭐⭐⭐     |
+| Optional              | 8       | Null safety                           | Null checks             | ⭐⭐       |
+| Date-Time API         | 8       | Immutable, timezone-aware dates/times | java.util.Date/Calendar | ⭐⭐       |
+| Base64 Utilities      | 8       | Encode/decode for transport           | Custom encoders         | ⭐         |
+| Pattern Matching      | 14+     | Modern type checking                  | instanceof + cast       | ⭐⭐       |
 
 ---
 

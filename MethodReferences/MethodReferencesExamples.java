@@ -24,6 +24,12 @@ public class MethodReferencesExamples {
             new User("Cara", "cara@company.com", LocalDate.of(2022, 1, 10))
         );
 
+        // --- Beginner: static method ref vs lambda ---
+        users.stream()
+             .map(User::name) // method reference instead of u -> u.name()
+             .sorted(String::compareToIgnoreCase)
+             .forEach(System.out::println);
+
         // Static method reference
         Function<String, String> domain = MethodReferencesExamples::domainOf;
         System.out.println("Domain: " + domain.apply("ana@company.com"));

@@ -2,18 +2,18 @@
 
 ## 📋 At a Glance
 
-| Feature                     | Version  | What It Does                          | Problem It Solves                    | Replaces/Improves          |
-| --------------------------- | -------- | ------------------------------------- | ------------------------------------ | -------------------------- |
-| **Lambda Expressions**      | Java 8   | Anonymous functions passed as values  | Verbose anonymous classes            | Anonymous inner classes    |
-| **Functional Interfaces**   | Java 8   | Single-abstract-method contracts      | Boilerplate interfaces for callbacks | Verbose custom interfaces  |
-| **Method References**       | Java 8   | Shorthand for lambdas calling methods | Noisy lambdas that just delegate     | Inline lambdas             |
-| **Default Methods**         | Java 8   | Behavior inside interfaces            | Breaking API changes on new methods  | Manual mixins/abstract     |
-| **forEach()**               | Java 8   | Iterate with lambda expressions       | Boilerplate loop syntax              | Enhanced for loops         |
-| **Stream API**              | Java 8   | Functional data processing pipelines  | Complex loop logic                   | Traditional nested loops   |
-| **Optional**                | Java 8   | Container for possibly-null values    | NullPointerException                 | Null checks everywhere     |
-| **Date-Time API (java.time)** | Java 8 | Immutable, timezone-safe date/time    | `java.util.Date`/`Calendar` issues   | Legacy date classes        |
-| **Base64 Utilities**        | Java 8   | Encode/decode binary for transport    | Unsafe ad-hoc encoders               | Custom/legacy encoders     |
-| **Pattern Matching**        | Java 14+ | Type checking and binding in one step | Manual casting after instanceof      | instanceof + type cast     |
+| Feature                       | Version  | What It Does                          | Problem It Solves                    | Replaces/Improves         |
+| ----------------------------- | -------- | ------------------------------------- | ------------------------------------ | ------------------------- |
+| **Lambda Expressions**        | Java 8   | Anonymous functions passed as values  | Verbose anonymous classes            | Anonymous inner classes   |
+| **Functional Interfaces**     | Java 8   | Single-abstract-method contracts      | Boilerplate interfaces for callbacks | Verbose custom interfaces |
+| **Method References**         | Java 8   | Shorthand for lambdas calling methods | Noisy lambdas that just delegate     | Inline lambdas            |
+| **Default Methods**           | Java 8   | Behavior inside interfaces            | Breaking API changes on new methods  | Manual mixins/abstract    |
+| **forEach()**                 | Java 8   | Iterate with lambda expressions       | Boilerplate loop syntax              | Enhanced for loops        |
+| **Stream API**                | Java 8   | Functional data processing pipelines  | Complex loop logic                   | Traditional nested loops  |
+| **Optional**                  | Java 8   | Container for possibly-null values    | NullPointerException                 | Null checks everywhere    |
+| **Date-Time API (java.time)** | Java 8   | Immutable, timezone-safe date/time    | `java.util.Date`/`Calendar` issues   | Legacy date classes       |
+| **Base64 Utilities**          | Java 8   | Encode/decode binary for transport    | Unsafe ad-hoc encoders               | Custom/legacy encoders    |
+| **Pattern Matching**          | Java 14+ | Type checking and binding in one step | Manual casting after instanceof      | instanceof + type cast    |
 
 ---
 

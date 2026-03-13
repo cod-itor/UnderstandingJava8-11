@@ -27,6 +27,13 @@ public class FunctionalInterfacesExamples {
     }
 
     public static void main(String[] args) {
+        // --- Beginner: smallest possible examples ---
+        ArithmeticOperation add = (a, b) -> a + b; // lambda implementing a functional interface
+        System.out.println("3 + 4 = " + add.operate(3, 4));
+
+        Predicate<Integer> isEven = n -> n % 2 == 0; // built-in functional interface
+        System.out.println("Is 6 even? " + isEven.test(6));
+
         // Supplier: lazy configuration load
         Supplier<String> configSupplier = () -> "https://api.example.com";
         System.out.println("Config endpoint: " + configSupplier.get());
@@ -95,6 +102,12 @@ public class FunctionalInterfacesExamples {
     @FunctionalInterface
     interface NetworkCall {
         void run() throws Exception;
+    }
+
+    // Simple SAM from recap content
+    @FunctionalInterface
+    interface ArithmeticOperation {
+        double operate(double a, double b);
     }
 
     record User(String name, int age, boolean active, String email) {}

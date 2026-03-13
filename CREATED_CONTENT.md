@@ -9,6 +9,7 @@ You now have a **comprehensive, production-grade learning package** for Java 8-1
 ## 📦 What's Included
 
 ### 🆕 Latest Additions
+
 - `FunctionalInterfaces/` – SAM rules, composition, validation pipelines
 - `MethodReferences/` – static/bound/unbound/constructor references
 - `DefaultMethods/` – interface evolution and mixin-style helpers

@@ -1,9 +1,29 @@
 # Method References - Java 8
 
 ## 🚀 What Are They?
+
 A **method reference** is a shorthand for a lambda that calls an existing method. It improves readability and reuses named behavior.
 
+### 🟢 Beginner quick start
+- If your lambda just calls an existing method, replace it with a method reference.
+- Four shapes to remember (same as the Java docs):
+    1) `ClassName::staticMethod`
+    2) `instance::instanceMethod`
+    3) `ClassName::instanceMethod` (first argument becomes the receiver)
+    4) `ClassName::new` (constructor)
+
+Example side-by-side:
+
+```java
+// Lambda
+people.sort((a, b) -> Person.compareByAge(a, b));
+
+// Method reference (static)
+people.sort(Person::compareByAge);
+```
+
 Syntax patterns:
+
 1. `ClassName::staticMethod`
 2. `instance::instanceMethod` (bound instance)
 3. `ClassName::instanceMethod` (unbound; first arg becomes the receiver)
@@ -12,23 +32,28 @@ Syntax patterns:
 ---
 
 ## 🌱 Examples by Type
+
 ### 1) Static Method Reference
+
 ```java
 Function<String, Integer> parse = Integer::parseInt;
 ```
 
 ### 2) Bound Instance Method Reference
+
 ```java
 Logger logger = Logger.getLogger("demo");
 Consumer<String> info = logger::info; // equivalent to s -> logger.info(s)
 ```
 
 ### 3) Unbound Instance Method Reference
+
 ```java
 BiPredicate<String, String> equalsIgnoreCase = String::equalsIgnoreCase;
 ```
 
 ### 4) Constructor Reference
+
 ```java
 Supplier<List<String>> listFactory = ArrayList::new;
 Function<String, User> toUser = User::new; // calls new User(String name)
@@ -37,6 +62,7 @@ Function<String, User> toUser = User::new; // calls new User(String name)
 ---
 
 ## 🌍 Real-World Use Cases
+
 - **Stream pipelines** for mapping, filtering, reducing while staying readable
 - **Factory patterns** via constructor references
 - **Event handlers / callbacks** using existing methods instead of inline lambdas
@@ -45,6 +71,7 @@ Function<String, User> toUser = User::new; // calls new User(String name)
 ---
 
 ## 🧭 Stream Pipeline Examples
+
 ```java
 List<String> emails = users.stream()
     .map(User::email)
@@ -61,6 +88,7 @@ Map<String, Long> countsByDomain = emails.stream()
 ---
 
 ## ⚠️ Tips & Pitfalls
+
 - Prefer method references when the lambda would only call an existing method; otherwise keep the lambda for clarity.
 - For unbound refs (`Class::instanceMethod`), remember the first argument becomes `this`.
 - Constructor refs shine with factories: `Map<String, Supplier<Service>> registry = Map.of("a", ServiceA::new, "b", ServiceB::new);`
@@ -68,6 +96,7 @@ Map<String, Long> countsByDomain = emails.stream()
 ---
 
 ## ✅ Takeaways
+
 - Method references are just readable shortcuts for certain lambdas.
 - They work with functional interfaces (Supplier, Function, Consumer, etc.).
 - Combine them with streams, collectors, and factories for clean code.

@@ -193,21 +193,21 @@ Java8-11/
 
 ## 📊 Content at a Glance
 
-| File/Folder            | Type      | Focus                               | Time    | Level        |
-| ---------------------- | --------- | ----------------------------------- | ------- | ------------ |
-| README.md              | Guide     | Overview & connections              | 30 min  | Beginner     |
-| QUICK_REFERENCE.md     | Reference | Comparisons & quick lookup          | 20 min  | Beginner     |
-| VISUAL_GUIDE.md        | Visual    | Diagrams & flowcharts               | 30 min  | Beginner     |
-| LambdaExpressions/     | Tutorial  | Foundation                          | 90 min  | Beginner     |
-| FunctionalInterfaces/  | Tutorial  | SAM rules, built-ins, composition   | 60 min  | Beginner     |
-| MethodReferences/      | Tutorial  | Lambdas → method refs               | 30 min  | Beginner     |
-| DefaultMethods/        | Tutorial  | Interface evolution & mixins        | 30 min  | Beginner     |
-| ForEachMethod/         | Tutorial  | Simple iteration                    | 60 min  | Beginner     |
-| OptionalClass/         | Tutorial  | Null safety                         | 90 min  | Intermediate |
-| StreamAPI/             | Tutorial  | Data processing                     | 120 min | Intermediate |
-| DateTimeAPI/           | Tutorial  | Time zones, Duration/Period, format | 45 min  | Intermediate |
-| Base64Encoding/        | Tutorial  | Encoding/decoding for transport     | 20 min  | Beginner     |
-| PatternMatching/       | Tutorial  | Modern syntax (Java 14+)            | 90 min  | Intermediate |
+| File/Folder           | Type      | Focus                               | Time    | Level        |
+| --------------------- | --------- | ----------------------------------- | ------- | ------------ |
+| README.md             | Guide     | Overview & connections              | 30 min  | Beginner     |
+| QUICK_REFERENCE.md    | Reference | Comparisons & quick lookup          | 20 min  | Beginner     |
+| VISUAL_GUIDE.md       | Visual    | Diagrams & flowcharts               | 30 min  | Beginner     |
+| LambdaExpressions/    | Tutorial  | Foundation                          | 90 min  | Beginner     |
+| FunctionalInterfaces/ | Tutorial  | SAM rules, built-ins, composition   | 60 min  | Beginner     |
+| MethodReferences/     | Tutorial  | Lambdas → method refs               | 30 min  | Beginner     |
+| DefaultMethods/       | Tutorial  | Interface evolution & mixins        | 30 min  | Beginner     |
+| ForEachMethod/        | Tutorial  | Simple iteration                    | 60 min  | Beginner     |
+| OptionalClass/        | Tutorial  | Null safety                         | 90 min  | Intermediate |
+| StreamAPI/            | Tutorial  | Data processing                     | 120 min | Intermediate |
+| DateTimeAPI/          | Tutorial  | Time zones, Duration/Period, format | 45 min  | Intermediate |
+| Base64Encoding/       | Tutorial  | Encoding/decoding for transport     | 20 min  | Beginner     |
+| PatternMatching/      | Tutorial  | Modern syntax (Java 14+)            | 90 min  | Intermediate |
 
 ---
 
