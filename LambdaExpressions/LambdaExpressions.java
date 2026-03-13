@@ -117,6 +117,36 @@ public class LambdaExpressions {
         System.out.println("With inferred types: 5 * 3 = " + multiply1.apply(5, 3));
         System.out.println("With explicit types: 5 * 3 = " + multiply2.apply(5, 3));
     }
+
+    /**
+     * Example 5b: If you write this... you get this (quick outcomes)
+     */
+    public static void demonstrateIfYouWriteThis() {
+        System.out.println("\n=== If you write this... you get this (lambdas) ===");
+
+        Runnable hi = () -> System.out.println("hi");
+        hi.run(); // prints hi
+
+        BiFunction<Integer, Integer, Integer> add = (a, b) -> a + b;
+        System.out.println("add 2+3 = " + add.apply(2, 3));
+
+        Function<String, String> upper = name -> name.toUpperCase();
+        System.out.println("upper('bob') = " + upper.apply("bob"));
+
+        BiFunction<Integer, Integer, Integer> doubleSum = (x, y) -> {
+            int sum = x + y;
+            return sum * 2;
+        };
+        System.out.println("doubleSum(2,3) = " + doubleSum.apply(2, 3));
+
+        Comparator<UserDto> byJoined = Comparator.comparing(UserDto::joinedAt);
+        List<UserDto> users = new ArrayList<>(Arrays.asList(
+            new UserDto("ana", "a@x.com", new Date(1_000_000)),
+            new UserDto("bob", "b@x.com", new Date(2_000_000))
+        ));
+        users.sort(byJoined);
+        System.out.println("sorted by joined: " + users);
+    }
     
     // ===== FUNCTIONAL INTERFACES =====
     
