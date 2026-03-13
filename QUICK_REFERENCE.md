@@ -11,6 +11,10 @@
 - **Date-Time (java.time)**: Use `LocalDate/LocalDateTime` for human time, `Instant` for machine time, `ZonedDateTime` for time zones.
 - **Base64**: Encode/decode bytes to text for transport. Use `Base64.getEncoder()` and specify UTF-8.
 
+### 🚀 Day 0: run something now (2 minutes)
+- Open `FunctionalInterfaces/FunctionalInterfacesExamples.java`, run it, and confirm the first lines print `3 + 4 = 7.0` and `Is 6 even? true`.
+- Open `MethodReferences/MethodReferencesExamples.java`, run it, and confirm names print in alpha order.
+
 | Feature                       | Version  | What It Does                          | Problem It Solves                    | Replaces/Improves         |
 | ----------------------------- | -------- | ------------------------------------- | ------------------------------------ | ------------------------- |
 | **Lambda Expressions**        | Java 8   | Anonymous functions passed as values  | Verbose anonymous classes            | Anonymous inner classes   |
@@ -34,6 +38,7 @@
 - **Example**: `list.sort((a, b) -> a - b)`
 - **Benefit**: Reduces 5-10 lines to 1 line
 - **Don't Use When**: Logic is too complex (10+ lines)
+- **Try it**: `ArithmeticOperation add = (a,b)->a+b; System.out.println(add.operate(2,3));`
 
 ### forEach()
 
@@ -41,6 +46,7 @@
 - **Example**: `items.forEach(System.out::println)`
 - **Benefit**: Cleaner than for loops
 - **Don't Use When**: You need break/continue or index
+- **Try it**: `List.of("a","b").forEach(System.out::println);`
 
 ### Stream API
 
@@ -48,6 +54,7 @@
 - **Example**: `list.stream().filter(x -> x > 5).map(x -> x * 2).collect(Collectors.toList())`
 - **Benefit**: Powerful transformations, lazy evaluation
 - **Don't Use When**: Simple one-off operations
+- **Try it**: `List.of(1,2,3,4).stream().filter(n->n%2==0).forEach(System.out::println);`
 
 ### Optional
 
@@ -55,6 +62,7 @@
 - **Example**: `findUser(id).map(User::getEmail).orElse("none")`
 - **Benefit**: No more null checks, type-safe
 - **Don't Use When**: Value always present
+- **Try it**: `Optional.of("hi").map(String::toUpperCase).ifPresent(System.out::println);`
 
 ### Functional Interfaces
 
@@ -62,6 +70,7 @@
 - **Example**: `Predicate<User> active = User::isActive;`
 - **Benefit**: Compose behavior, enforce single responsibility
 - **Don't Use When**: You need multiple abstract methods (use class instead)
+- **Try it**: `@FunctionalInterface interface Op{int run(int a,int b);} Op mul=(a,b)->a*b; System.out.println(mul.run(2,4));`
 
 ### Method References
 
@@ -69,6 +78,7 @@
 - **Example**: `emails.forEach(System.out::println)`
 - **Benefit**: Cleaner, more readable than equivalent lambda
 - **Don't Use When**: You need inline logic or state
+- **Try it**: `List.of("Ana","bob").stream().sorted(String::compareToIgnoreCase).forEach(System.out::println);`
 
 ### Default Methods
 
@@ -76,6 +86,12 @@
 - **Example**: `default void audit(String msg) { ... }`
 - **Benefit**: Add behavior/mixins; reuse helpers
 - **Don't Use When**: Behavior is highly stateful; prefer class
+- **Try it**:
+    ```java
+    interface Greeter { default void hi(){ System.out.println("hi"); } }
+    class G implements Greeter {}
+    new G().hi();
+    ```
 
 ### Date-Time API (java.time)
 
@@ -83,6 +99,7 @@
 - **Example**: `ZonedDateTime nowUtc = Instant.now().atZone(ZoneId.of("UTC"));`
 - **Benefit**: Immutable, timezone-safe, better than `Date`
 - **Don't Use When**: Working with legacy APIs without conversion
+- **Try it**: `System.out.println(LocalDate.now().plusDays(7));`
 
 ### Base64 Utilities
 
@@ -90,6 +107,7 @@
 - **Example**: `Base64.getUrlEncoder().withoutPadding().encodeToString(bytes)`
 - **Benefit**: Standard, safe encoders (basic/url/mime)
 - **Don't Use When**: You need encryption (Base64 is encoding only)
+- **Try it**: `String e=Base64.getEncoder().encodeToString("hi".getBytes(UTF_8)); System.out.println(e);`
 
 ### Pattern Matching
 
@@ -97,6 +115,7 @@
 - **Example**: `if (obj instanceof String s) { ... }`
 - **Benefit**: Eliminates manual casting
 - **Don't Use When**: Legacy code compatibility needed (Java < 16)
+- **Try it**: `Object o="hey"; if(o instanceof String s){ System.out.println(s.length()); }
 
 ---
 
