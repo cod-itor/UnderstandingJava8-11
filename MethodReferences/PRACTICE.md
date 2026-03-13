@@ -25,3 +25,15 @@ Use `MethodReferencesExamples.java` for solutions.
 **Email Directory**: Given users with `name` and `email`, build a map domain → sorted list of names:
 
 - Map to emails (`User::email`), filter company emails (`isCompanyEmail`), map to domain (`domainOf`), group by domain with names, sort each list, print.
+
+## Spring-flavored labs
+1. Map `List<UserDto>` to emails using `UserDto::getEmail`; print.
+2. Filter emails with `EmailValidator::isCompanyEmail` (static ref) and print.
+3. Sort `List<OrderDto>` by `OrderDto::getCreatedAt` using comparator with method refs.
+4. Collect names into `new ArrayList<>()` via `Collectors.toCollection(ArrayList::new)`.
+5. Convert `List<String>` ids to integers with `Integer::parseInt`; handle errors separately.
+6. Filter out blank form inputs with `String::isBlank` in a stream.
+7. Use constructor ref `UserDto::new` to map names to DTOs; print.
+8. Chain refs: `users.stream().map(UserDto::getEmail).filter(EmailValidator::isValid).forEach(System.out::println);`
+9. Logger: `Logger log = Logger.getLogger("demo"); names.forEach(log::info);`
+10. Extract domains: `emails.stream().map(EmailUtils::domainOf).forEach(System.out::println);`

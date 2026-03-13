@@ -29,3 +29,15 @@ Use `StreamAPI/StreamAPIExamples.java` for solutions.
 - Compute total, average, max
 - Collect payer emails (if present) distinct and sorted
 - Print a summary string.
+
+## Spring-flavored labs
+1. From `List<UserDto>`, collect active users' emails sorted; print.
+2. From `List<OrderDto>`, sum amounts where status = PAID; print total.
+3. Group orders by `status` into `Map<Status, List<OrderDto>>`; print map.
+4. Partition users into premium vs regular by a boolean flag; print sizes.
+5. Build `Map<String, Long>` counting users per country from `List<UserDto>`; print.
+6. From `List<String> tags`, produce a distinct, lowercased, sorted list; print.
+7. Safe extract: `List<Optional<String>> emailsOpt` → flatten non-empty → sorted list.
+8. Combine Optional + stream: `Optional<UserDto>` → email → stream → collect single-element list or empty.
+9. Debug with `peek`: log values before and after filter in a pipeline and show output.
+10. Handle empty lists: find max order amount or default to 0; print.
