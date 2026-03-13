@@ -2,6 +2,15 @@
 
 ## 📋 At a Glance
 
+### 🟢 Beginner recap (plain language)
+
+- **Functional interface (SAM)**: An interface with exactly one abstract method. Add `@FunctionalInterface` so the compiler protects it. Example: `ArithmeticOperation { double operate(double a, double b); }`.
+- **Lambda**: A short, nameless function. Write only the logic you need: `(a, b) -> a + b`.
+- **Method reference**: Shorthand when a lambda just calls an existing method. Example: `people.sort(Person::compareByAge)` instead of `(a, b) -> Person.compareByAge(a, b)`.
+- **Default method**: A method with a body inside an interface. Lets you evolve interfaces without breaking old implementations: `default void log() { ... }`.
+- **Date-Time (java.time)**: Use `LocalDate/LocalDateTime` for human time, `Instant` for machine time, `ZonedDateTime` for time zones.
+- **Base64**: Encode/decode bytes to text for transport. Use `Base64.getEncoder()` and specify UTF-8.
+
 | Feature                       | Version  | What It Does                          | Problem It Solves                    | Replaces/Improves         |
 | ----------------------------- | -------- | ------------------------------------- | ------------------------------------ | ------------------------- |
 | **Lambda Expressions**        | Java 8   | Anonymous functions passed as values  | Verbose anonymous classes            | Anonymous inner classes   |

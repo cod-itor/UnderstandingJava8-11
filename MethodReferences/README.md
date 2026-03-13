@@ -5,12 +5,13 @@
 A **method reference** is a shorthand for a lambda that calls an existing method. It improves readability and reuses named behavior.
 
 ### 🟢 Beginner quick start
+
 - If your lambda just calls an existing method, replace it with a method reference.
 - Four shapes to remember (same as the Java docs):
-    1) `ClassName::staticMethod`
-    2) `instance::instanceMethod`
-    3) `ClassName::instanceMethod` (first argument becomes the receiver)
-    4) `ClassName::new` (constructor)
+  1. `ClassName::staticMethod`
+  2. `instance::instanceMethod`
+  3. `ClassName::instanceMethod` (first argument becomes the receiver)
+  4. `ClassName::new` (constructor)
 
 Example side-by-side:
 

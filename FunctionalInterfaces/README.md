@@ -5,9 +5,10 @@
 A **Functional Interface** is an interface that contains **exactly one abstract method**. It may include any number of `default` or `static` methods, but only one abstract method (Single Abstract Method - SAM). Mark it with `@FunctionalInterface` to let the compiler enforce the rule.
 
 ### 🟢 Beginner quick start
-1) Write an interface with **one** abstract method.
-2) Add `@FunctionalInterface` so the compiler warns if you add another.
-3) Create a lambda to implement it.
+
+1. Write an interface with **one** abstract method.
+2. Add `@FunctionalInterface` so the compiler warns if you add another.
+3. Create a lambda to implement it.
 
 ```java
 @FunctionalInterface
