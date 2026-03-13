@@ -12,6 +12,7 @@
 - **Base64**: Encode/decode bytes to text for transport. Use `Base64.getEncoder()` and specify UTF-8.
 
 ### 🚀 Day 0: run something now (2 minutes)
+
 - Open `FunctionalInterfaces/FunctionalInterfacesExamples.java`, run it, and confirm the first lines print `3 + 4 = 7.0` and `Is 6 even? true`.
 - Open `MethodReferences/MethodReferencesExamples.java`, run it, and confirm names print in alpha order.
 
@@ -87,11 +88,11 @@
 - **Benefit**: Add behavior/mixins; reuse helpers
 - **Don't Use When**: Behavior is highly stateful; prefer class
 - **Try it**:
-    ```java
-    interface Greeter { default void hi(){ System.out.println("hi"); } }
-    class G implements Greeter {}
-    new G().hi();
-    ```
+  ```java
+  interface Greeter { default void hi(){ System.out.println("hi"); } }
+  class G implements Greeter {}
+  new G().hi();
+  ```
 
 ### Date-Time API (java.time)
 
@@ -219,6 +220,31 @@ if (obj instanceof String str) {
     System.out.println(str.toUpperCase());
 }
 ```
+
+---
+
+## 🎯 Practice pack (10 tasks, easy → hard)
+
+1. Lambda warm-up: Write `ArithmeticOperation sub = (a,b)->a-b;` and print `sub.operate(10,3)`.
+2. forEach: Print each name uppercased from `List.of("ana","bob","cara")` using `forEach` + method ref.
+3. Functional interface: Create `@FunctionalInterface interface Check { boolean ok(int n); }` and a lambda that returns true for even numbers.
+4. Method ref: Sort `List.of("Zed","amy","Bob")` case-insensitively with `String::compareToIgnoreCase`.
+5. Optional: Wrap a nullable email with `Optional.ofNullable`, map to upper-case, and `orElse("NO EMAIL")`.
+6. Default method: Add a `default void hello(){ System.out.println("hello"); }` to an interface and call it from an implementing class.
+7. Stream API: Given `List<Integer> nums = List.of(3, 7, 2, 8, 5);` filter >4, double them, collect to a list, print.
+8. Date-Time: Print next Monday’s date using `LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY))`.
+9. Base64: Encode the string `"id:42"` with URL encoder (no padding) and decode it back.
+10. Mini-project (combine features): Build a tiny “user report” method that
+    - Filters active users (Predicate + stream)
+    - Maps to emails (method reference)
+    - Normalizes with Optional (skip missing emails)
+    - Prints sorted unique emails (stream + forEach)
+
+### 🔧 Project ideas (weekend-friendly)
+
+- **CLI Todo Manager**: Uses streams for filtering, Optional for safe lookups, Base64 for exporting/importing data, java.time for due dates.
+- **Pricing Engine**: Functional interfaces for pricing rules, default methods for common helpers, method refs in stream pipelines.
+- **Log Analyzer**: Stream logs, use pattern matching (if on Java 17) to branch on event types, format timestamps with java.time.
 
 ### 4. Polymorphic Processing
 
