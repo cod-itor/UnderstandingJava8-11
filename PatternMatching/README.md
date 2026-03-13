@@ -1,9 +1,11 @@
 # Pattern Matching - Java 14, 16, 17
 
 ## 📚 Definition
+
 **Pattern Matching** is a feature that simplifies type checking and data extraction by allowing you to test whether a value matches a pattern and bind the components of the value to variables, all in a concise way. It makes code more readable and reduces boilerplate.
 
 **Key Versions:**
+
 - **Java 14**: Introduced `instanceof` with type patterns (Preview)
 - **Java 16**: Finalized `instanceof` patterns
 - **Java 17**: Introduced switch patterns and guarded patterns
@@ -13,6 +15,7 @@
 ## 🎯 When to Use Pattern Matching
 
 ### Use Pattern Matching When:
+
 - ✅ Checking object types before casting
 - ✅ You need to extract values from complex objects
 - ✅ Writing conditional logic based on types
@@ -21,6 +24,7 @@
 - ✅ Processing different data types in switch statements (Java 17+)
 
 ### Available In:
+
 - ✅ instanceof expressions (Java 16+)
 - ✅ switch statements (Java 17+)
 - ✅ Can be combined with other patterns
@@ -32,6 +36,7 @@
 ### 1. **instanceof Patterns** (Java 14+)
 
 #### Before Java 14: Traditional Type Checking
+
 ```java
 Object obj = "Hello";
 
@@ -43,12 +48,14 @@ if (obj instanceof String) {
 ```
 
 **Issues:**
+
 - Must cast after instanceof check
 - Extra variable declaration
 - Easy to forget the cast
 - Verbose and repetitive
 
 #### After Java 14: Pattern Matching
+
 ```java
 Object obj = "Hello";
 
@@ -59,6 +66,7 @@ if (obj instanceof String str) {
 ```
 
 **Benefits:**
+
 - Cast is automatic
 - Variable is bound in one step
 - Scope limited to the if block
@@ -91,6 +99,7 @@ if (obj instanceof String str when str.length() > 5) {
 ### 3. **Switch with Patterns** (Java 17+)
 
 #### Before Java 17: Switch with Objects
+
 ```java
 Object obj = ...;
 
@@ -113,6 +122,7 @@ if (obj instanceof String) {
 ```
 
 #### After Java 17: Switch Patterns
+
 ```java
 Object obj = ...;
 
@@ -127,6 +137,7 @@ String result = switch (obj) {
 ```
 
 **Benefits:**
+
 - Cleaner than if-else chains
 - Type safety built-in
 - Exhaustiveness checking
@@ -137,6 +148,7 @@ String result = switch (obj) {
 ## 💡 Why You Need Pattern Matching
 
 ### 1. **Less Boilerplate**
+
 Reduces casting and type checking code:
 
 ```java
@@ -151,6 +163,7 @@ if (obj instanceof String str) process(str);
 ```
 
 ### 2. **Type Safety**
+
 Eliminates unsafe casts:
 
 ```java
@@ -166,6 +179,7 @@ if (obj instanceof String str) {  // False, no casting
 ```
 
 ### 3. **Cleaner Logic Flow**
+
 Makes complex conditional logic more readable:
 
 ```java
@@ -198,6 +212,7 @@ public double getArea(Object shape) {
 ```
 
 ### 4. **Scope Limitation**
+
 Variable is scoped to the block where it's used:
 
 ```java
@@ -208,6 +223,7 @@ if (obj instanceof String str) {
 ```
 
 ### 5. **Guard Clauses**
+
 Combine type checking with additional conditions:
 
 ```java
@@ -224,6 +240,7 @@ if (obj instanceof String str && str.length() > 0) {
 ### Scenario 1: Polymorphic Collections
 
 #### Before Java 17
+
 ```java
 List<Object> list = Arrays.asList("String", 42, true, 3.14);
 
@@ -245,6 +262,7 @@ for (Object item : list) {
 ```
 
 #### After Java 17
+
 ```java
 List<Object> list = Arrays.asList("String", 42, true, 3.14);
 
@@ -263,6 +281,7 @@ for (Object item : list) {
 ### Scenario 2: API Response Handling
 
 #### Before
+
 ```java
 public void handleResponse(Object response) {
     if (response instanceof ErrorResponse) {
@@ -279,16 +298,17 @@ public void handleResponse(Object response) {
 ```
 
 #### After
+
 ```java
 public void handleResponse(Object response) {
     switch (response) {
-        case ErrorResponse err -> 
+        case ErrorResponse err ->
             logger.error("Error: " + err.getErrorCode() + " - " + err.getMessage());
-        case SuccessResponse success -> 
+        case SuccessResponse success ->
             System.out.println("Success: " + success.getData());
-        case WarningResponse warn -> 
+        case WarningResponse warn ->
             System.out.println("Warning: " + warn.getMessage());
-        default -> 
+        default ->
             System.out.println("Unknown response type");
     }
 }
@@ -297,6 +317,7 @@ public void handleResponse(Object response) {
 ### Scenario 3: Validation with Guards
 
 #### Before
+
 ```java
 String email = getEmail();
 
@@ -309,6 +330,7 @@ if (email != null && email instanceof String) {
 ```
 
 #### After (Java 17+)
+
 ```java
 String email = getEmail();
 
@@ -320,6 +342,7 @@ if (email instanceof String e && e.contains("@") && e.contains(".")) {
 ### Scenario 4: Null Handling
 
 #### Java 17 Improvement
+
 ```java
 // Old way - still works
 if (obj != null && obj instanceof String s) {
@@ -345,20 +368,21 @@ switch (obj) {
 
 ## 📊 Key Improvements by Version
 
-| Feature | Java 14 | Java 16 | Java 17 |
-|---------|---------|---------|---------|
-| instanceof Patterns | Preview | Final | ✅ |
-| Basic Type Pattern | ✅ | ✅ | ✅ |
-| Guard Conditions | ❌ | ❌ | ✅ |
-| Switch Patterns | ❌ | ❌ | Preview |
-| null in switch | ❌ | ❌ | ✅ |
-| Type in switch | ❌ | ❌ | ✅ |
+| Feature             | Java 14 | Java 16 | Java 17 |
+| ------------------- | ------- | ------- | ------- |
+| instanceof Patterns | Preview | Final   | ✅      |
+| Basic Type Pattern  | ✅      | ✅      | ✅      |
+| Guard Conditions    | ❌      | ❌      | ✅      |
+| Switch Patterns     | ❌      | ❌      | Preview |
+| null in switch      | ❌      | ❌      | ✅      |
+| Type in switch      | ❌      | ❌      | ✅      |
 
 ---
 
 ## ⚠️ Important Rules
 
 ### 1. **instanceof Pattern Syntax**
+
 ```java
 if (obj instanceof ClassName varName) {
     // varName is now ClassName type
@@ -367,6 +391,7 @@ if (obj instanceof ClassName varName) {
 ```
 
 ### 2. **Switch Pattern Exhaustiveness**
+
 ```java
 // ✅ Exhaustive - covers all types
 String result = switch (number) {
@@ -386,6 +411,7 @@ String result = switch (obj) {
 ```
 
 ### 3. **Guard Pattern Rules**
+
 ```java
 // ✅ Correct - guard after variable binding
 if (obj instanceof String s && s.length() > 5) { }
@@ -404,10 +430,11 @@ if (s.length() > 5 && obj instanceof String s) { }  // s not defined yet
 ## 💾 Real-World Examples
 
 ### Example 1: JSON Processing
+
 ```java
 public Object parseJson(String json) {
     Object obj = jsonParser.parse(json);
-    
+
     return switch (obj) {
         case String s -> "Text: " + s;
         case Integer i -> "Number: " + i;
@@ -420,6 +447,7 @@ public Object parseJson(String json) {
 ```
 
 ### Example 2: Data Validation
+
 ```java
 public boolean isValid(Object data) {
     return switch (data) {
@@ -433,12 +461,13 @@ public boolean isValid(Object data) {
 ```
 
 ### Example 3: Object Comparison
+
 ```java
 public boolean equals(Object obj) {
     return switch (this) {
-        case Point p when obj instanceof Point q -> 
+        case Point p when obj instanceof Point q ->
             p.x == q.x && p.y == q.y;
-        case Rectangle r when obj instanceof Rectangle r2 -> 
+        case Rectangle r when obj instanceof Rectangle r2 ->
             r.width == r2.width && r.height == r2.height;
         default -> false;
     };
@@ -449,14 +478,14 @@ public boolean equals(Object obj) {
 
 ## 🎓 Key Takeaways
 
-| Aspect | Details |
-|--------|---------|
-| **What** | Simplified type checking and extraction |
-| **When** | Type checking, polymorphic code, switch on types |
-| **Why** | Less boilerplate, more readable, type-safe |
-| **Replaces** | instanceof + cast + new variable (Java 14+) |
-| **Better for** | Complex type hierarchies, API responses |
-| **Java Version** | 14+ (instanceof), 17+ (switch patterns) |
+| Aspect           | Details                                          |
+| ---------------- | ------------------------------------------------ |
+| **What**         | Simplified type checking and extraction          |
+| **When**         | Type checking, polymorphic code, switch on types |
+| **Why**          | Less boilerplate, more readable, type-safe       |
+| **Replaces**     | instanceof + cast + new variable (Java 14+)      |
+| **Better for**   | Complex type hierarchies, API responses          |
+| **Java Version** | 14+ (instanceof), 17+ (switch patterns)          |
 
 ---
 
@@ -470,4 +499,5 @@ public boolean equals(Object obj) {
 ---
 
 ## 📖 Next Steps
+
 See the example files in this folder for practical implementations!

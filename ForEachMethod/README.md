@@ -1,9 +1,11 @@
 # forEach() Method - Java 8
 
 ## 📚 Definition
+
 The **forEach()** method is a default method in the `Iterable` interface that allows you to iterate over all elements in a collection. It takes a **functional interface** (lambda expression) as a parameter and executes it for each element.
 
 **Signature:**
+
 ```java
 void forEach(Consumer<? super T> action)
 ```
@@ -13,6 +15,7 @@ void forEach(Consumer<? super T> action)
 ## 🎯 When to Use forEach()
 
 ### Use forEach() When:
+
 - ✅ You need to perform an action on each element of a collection
 - ✅ Readability is important (more readable than traditional loops)
 - ✅ You want to use lambda expressions for concise code
@@ -20,6 +23,7 @@ void forEach(Consumer<? super T> action)
 - ✅ You're already using streams or modern Java practices
 
 ### Avoid forEach() When:
+
 - ❌ You need to break out of the loop (use traditional for loop)
 - ❌ You need the index of elements (use indexed for loop)
 - ❌ You need to modify the collection while iterating (use Iterator)
@@ -30,6 +34,7 @@ void forEach(Consumer<? super T> action)
 ## 🔧 How forEach() Works
 
 ### Basic Syntax:
+
 ```java
 collection.forEach(element -> {
     // Do something with element
@@ -37,6 +42,7 @@ collection.forEach(element -> {
 ```
 
 ### Key Points:
+
 1. **Lambda Expression**: `element -> { ... }` is a lambda that implements `Consumer<T>`
 2. **Functional Interface**: `Consumer` is a functional interface with one method: `accept(T t)`
 3. **No Return Value**: forEach() doesn't return anything - it's used for side effects
@@ -47,6 +53,7 @@ collection.forEach(element -> {
 ## 📊 Key Differences: forEach() vs Traditional Loops
 
 ### 1. **Traditional Enhanced For Loop**
+
 ```java
 List<String> fruits = Arrays.asList("Apple", "Banana", "Orange");
 
@@ -57,11 +64,13 @@ for (String fruit : fruits) {
 ```
 
 **Issues:**
+
 - More verbose
 - Imperative style (focuses on HOW)
 - Requires creating local variable
 
 ### 2. **forEach() Method**
+
 ```java
 List<String> fruits = Arrays.asList("Apple", "Banana", "Orange");
 
@@ -70,12 +79,14 @@ fruits.forEach(fruit -> System.out.println(fruit));
 ```
 
 **Benefits:**
+
 - Concise and readable
 - Declarative style (focuses on WHAT)
 - Works well with lambda expressions
 - Method reference syntax available
 
 ### 3. **Traditional For Loop with Index**
+
 ```java
 // ❌ When you need index
 for (int i = 0; i < fruits.size(); i++) {
@@ -90,7 +101,9 @@ for (int i = 0; i < fruits.size(); i++) {
 ## 💡 Why You Need forEach()
 
 ### 1. **Readability**
+
 Much cleaner and more expressive than traditional loops:
+
 ```java
 // Traditional
 for (String name : names) {
@@ -102,7 +115,9 @@ names.forEach(System.out::println);
 ```
 
 ### 2. **Functional Programming Style**
+
 Aligns with functional programming paradigms:
+
 ```java
 // Chain multiple operations
 users.stream()
@@ -111,14 +126,18 @@ users.stream()
 ```
 
 ### 3. **Less Boilerplate**
+
 No need to manage loop variables:
+
 ```java
 // forEach handles iteration internally
 items.forEach(item -> item.process());
 ```
 
 ### 4. **Method References**
+
 Clean syntax with method references:
+
 ```java
 // Using method reference
 fruits.forEach(System.out::println);
@@ -128,7 +147,9 @@ fruits.forEach(fruit -> System.out.println(fruit));
 ```
 
 ### 5. **Works with Streams**
+
 Natural continuation of stream operations:
+
 ```java
 numbers.stream()
     .filter(n -> n > 5)
@@ -150,11 +171,13 @@ public interface Consumer<T> {
 ```
 
 When you write:
+
 ```java
 items.forEach(item -> System.out.println(item));
 ```
 
 Java automatically creates a Consumer that:
+
 1. Takes one parameter (`item`)
 2. Executes the lambda body
 3. Returns nothing (void)
@@ -164,6 +187,7 @@ Java automatically creates a Consumer that:
 ## 📈 Real-World Use Cases
 
 ### 1. **Simple Iteration**
+
 ```java
 List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
 
@@ -172,6 +196,7 @@ names.forEach(name -> System.out.println("Name: " + name));
 ```
 
 ### 2. **Performing Operations on Objects**
+
 ```java
 List<Employee> employees = getEmployees();
 
@@ -183,6 +208,7 @@ users.forEach(user -> notificationService.notify(user));
 ```
 
 ### 3. **With Method References**
+
 ```java
 List<String> items = Arrays.asList("apple", "banana", "cherry");
 
@@ -194,6 +220,7 @@ items.forEach(database::save);
 ```
 
 ### 4. **Accessing Methods on Complex Objects**
+
 ```java
 List<Person> people = new ArrayList<>();
 people.add(new Person("Alice", 30));
@@ -204,6 +231,7 @@ people.forEach(p -> System.out.println(p.getName() + " - Age: " + p.getAge()));
 ```
 
 ### 5. **Conditional Actions**
+
 ```java
 // Process only items matching a condition
 items.forEach(item -> {
@@ -219,6 +247,7 @@ items.stream()
 ```
 
 ### 6. **Working with Maps**
+
 ```java
 Map<String, Integer> scores = new HashMap<>();
 scores.put("Alice", 95);
@@ -226,7 +255,7 @@ scores.put("Bob", 87);
 scores.put("Charlie", 92);
 
 // Iterate over entries
-scores.forEach((name, score) -> 
+scores.forEach((name, score) ->
     System.out.println(name + ": " + score)
 );
 
@@ -242,18 +271,21 @@ scores.values().forEach(System.out::println);
 ## 🏗️ Lambda Expression in forEach()
 
 ### 1. **Single Parameter (No Parentheses)**
+
 ```java
 // Parameter doesn't need parentheses if it's single
 list.forEach(item -> System.out.println(item));
 ```
 
 ### 2. **Single Parameter (With Parentheses)**
+
 ```java
 // Also valid but unnecessary for single parameters
 list.forEach((item) -> System.out.println(item));
 ```
 
 ### 3. **Multiple Statements**
+
 ```java
 list.forEach(item -> {
     System.out.println("Item: " + item);
@@ -263,6 +295,7 @@ list.forEach(item -> {
 ```
 
 ### 4. **Type Specification (Usually Inferred)**
+
 ```java
 // Type can be explicit but is usually inferred
 list.forEach((String item) -> System.out.println(item));
@@ -276,6 +309,7 @@ list.forEach(item -> System.out.println(item));
 ## 🎯 Advanced forEach() Patterns
 
 ### 1. **forEach() with Multiple Collections**
+
 ```java
 // Sometimes you need to iterate in a specific way
 List<String> keys = new ArrayList<>(map.keySet());
@@ -283,6 +317,7 @@ keys.forEach(key -> System.out.println(key + " -> " + map.get(key)));
 ```
 
 ### 2. **forEach() with Streams and Collectors**
+
 ```java
 // forEach as terminal operation in stream chain
 numbers.stream()
@@ -292,6 +327,7 @@ numbers.stream()
 ```
 
 ### 3. **forEach() with Exception Handling**
+
 ```java
 list.forEach(item -> {
     try {
@@ -303,6 +339,7 @@ list.forEach(item -> {
 ```
 
 ### 4. **forEach() with Method References**
+
 ```java
 // Four variations of method references in forEach
 
@@ -322,6 +359,7 @@ items.forEach(item -> database.save(item));
 ## ⚠️ Common Mistakes
 
 ### ❌ Mistake 1: Trying to Break Out of forEach()
+
 ```java
 list.forEach(item -> {
     if (item.equals("target")) {
@@ -331,6 +369,7 @@ list.forEach(item -> {
 ```
 
 ### ✅ Solution: Use traditional loop or filter
+
 ```java
 // Option 1: Traditional loop
 for (String item : list) {
@@ -346,6 +385,7 @@ Optional<String> found = list.stream()
 ```
 
 ### ❌ Mistake 2: Modifying Collection During Iteration
+
 ```java
 list.forEach(item -> {
     if (item.equals("remove_me")) {
@@ -355,6 +395,7 @@ list.forEach(item -> {
 ```
 
 ### ✅ Solution: Use Iterator or collect to new list
+
 ```java
 // Option 1: Use Iterator
 Iterator<String> it = list.iterator();
@@ -371,6 +412,7 @@ List<String> filtered = list.stream()
 ```
 
 ### ❌ Mistake 3: Using forEach() When You Need Index
+
 ```java
 items.forEach(item -> {
     // How do I get the index? ❌ No way in forEach
@@ -379,6 +421,7 @@ items.forEach(item -> {
 ```
 
 ### ✅ Solution: Use traditional loop or IntStream
+
 ```java
 // Option 1: Traditional for loop
 for (int i = 0; i < items.size(); i++) {
@@ -394,26 +437,28 @@ IntStream.range(0, items.size())
 
 ## 🔄 forEach() vs. for Loop vs. Iterator
 
-| Feature | forEach() | Enhanced For | Traditional For | Iterator |
-|---------|-----------|-------------|-----------------|----------|
-| Syntax | `list.forEach(...)` | `for(T t : list)` | `for(int i=0;...)` | `while(it.hasNext())` |
-| Readability | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ |
-| Index Access | ❌ No | ❌ No | ✅ Yes | ❌ No |
-| Break/Continue | ❌ No | ✅ Yes | ✅ Yes | ✅ Yes |
-| Safe Removal | ❌ No | ❌ No | ❌ No | ✅ Yes |
-| Functional Style | ✅ Yes | ❌ No | ❌ No | ❌ No |
-| Parallelizable | Partially | ❌ No | ❌ No | ❌ No |
+| Feature          | forEach()           | Enhanced For      | Traditional For    | Iterator              |
+| ---------------- | ------------------- | ----------------- | ------------------ | --------------------- |
+| Syntax           | `list.forEach(...)` | `for(T t : list)` | `for(int i=0;...)` | `while(it.hasNext())` |
+| Readability      | ⭐⭐⭐⭐⭐          | ⭐⭐⭐⭐          | ⭐⭐⭐             | ⭐⭐⭐                |
+| Index Access     | ❌ No               | ❌ No             | ✅ Yes             | ❌ No                 |
+| Break/Continue   | ❌ No               | ✅ Yes            | ✅ Yes             | ✅ Yes                |
+| Safe Removal     | ❌ No               | ❌ No             | ❌ No              | ✅ Yes                |
+| Functional Style | ✅ Yes              | ❌ No             | ❌ No              | ❌ No                 |
+| Parallelizable   | Partially           | ❌ No             | ❌ No              | ❌ No                 |
 
 ---
 
 ## 💾 Performance Considerations
 
 ### When forEach() is Efficient:
+
 - Simple operations on each element
 - No conditional breaks needed
 - Collection processing is the bottleneck (not the operation itself)
 
 ### When Traditional Loops are Better:
+
 - Need to break early
 - Need index access
 - Need to modify collection during iteration
@@ -423,15 +468,16 @@ IntStream.range(0, items.size())
 
 ## 🎓 Key Takeaways
 
-| Aspect | Details |
-|--------|---------|
-| **What** | Iterator method that executes an action on each element |
-| **When** | Processing each element with same operation, no break needed |
-| **Why** | Cleaner, more readable, supports functional programming |
-| **Replaces** | Enhanced for loops in most cases |
+| Aspect                    | Details                                                        |
+| ------------------------- | -------------------------------------------------------------- |
+| **What**                  | Iterator method that executes an action on each element        |
+| **When**                  | Processing each element with same operation, no break needed   |
+| **Why**                   | Cleaner, more readable, supports functional programming        |
+| **Replaces**              | Enhanced for loops in most cases                               |
 | **Not a replacement for** | Loops that need break/continue, index access, or modifications |
 
 ---
 
 ## 📖 Next Steps
+
 See the example files in this folder for practical implementations!

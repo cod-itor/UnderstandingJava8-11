@@ -1,9 +1,11 @@
 # Lambda Expressions - Java 8
 
 ## 📚 Definition
+
 A **Lambda Expression** is a short, anonymous function that can be passed around like any other value. It implements a functional interface (an interface with exactly one abstract method) and provides a concise way to write code that needs to be executed later.
 
 **Syntax:**
+
 ```java
 (parameters) -> expression
 // or
@@ -17,6 +19,7 @@ A **Lambda Expression** is a short, anonymous function that can be passed around
 ## 🎯 When to Use Lambda Expressions
 
 ### Use Lambdas When:
+
 - ✅ You need a simple function-like behavior
 - ✅ Passing logic to methods (callbacks, event handlers)
 - ✅ Using functional interfaces (Runnable, Callable, etc.)
@@ -25,6 +28,7 @@ A **Lambda Expression** is a short, anonymous function that can be passed around
 - ✅ Creating anonymous classes for single methods
 
 ### Avoid Lambdas When:
+
 - ❌ Logic is complex (use named classes instead)
 - ❌ Implementation has multiple methods
 - ❌ Code needs to be reused in many places (use named class)
@@ -35,6 +39,7 @@ A **Lambda Expression** is a short, anonymous function that can be passed around
 ## 🔧 Lambda Expression Syntax
 
 ### 1. **No Parameters**
+
 ```java
 () -> System.out.println("Hello");
 
@@ -44,6 +49,7 @@ task.run();
 ```
 
 ### 2. **Single Parameter**
+
 ```java
 x -> x * 2
 
@@ -53,6 +59,7 @@ int result = double.apply(5);  // 10
 ```
 
 ### 3. **Multiple Parameters**
+
 ```java
 (x, y) -> x + y
 
@@ -62,6 +69,7 @@ int result = add.apply(3, 5);  // 8
 ```
 
 ### 4. **Multiple Statements**
+
 ```java
 (x, y) -> {
     int sum = x + y;
@@ -77,6 +85,7 @@ int result = func.apply(3, 5);  // 16
 ```
 
 ### 5. **Explicit Type Declaration**
+
 ```java
 (Integer x) -> x * 2  // Types usually inferred
 
@@ -89,6 +98,7 @@ int result = func.apply(3, 5);  // 16
 ## 📊 Key Differences: Lambda vs Anonymous Classes
 
 ### Before Java 8 (Anonymous Class)
+
 ```java
 // Creating a Runnable with anonymous class (verbose)
 Runnable task = new Runnable() {
@@ -102,12 +112,14 @@ task.run();
 ```
 
 **Issues:**
+
 - Very verbose (5 lines for simple logic)
 - Lots of boilerplate
 - Hard to read the actual logic
 - Type safe but cumbersome
 
 ### After Java 8 (Lambda Expression)
+
 ```java
 // Creating a Runnable with lambda (concise)
 Runnable task = () -> System.out.println("Task executed");
@@ -116,6 +128,7 @@ task.run();
 ```
 
 **Benefits:**
+
 - Concise (1 line)
 - Clear intent
 - Easy to read
@@ -126,6 +139,7 @@ task.run();
 ## 💡 Why You Need Lambda Expressions
 
 ### 1. **Reduces Boilerplate Code**
+
 ```java
 // Old way - 6 lines for simple logic
 Collections.sort(list, new Comparator<String>() {
@@ -139,6 +153,7 @@ Collections.sort(list, (a, b) -> a.length() - b.length());
 ```
 
 ### 2. **Enables Functional Programming**
+
 ```java
 // Treat functions as values
 Function<Integer, Integer> square = x -> x * x;
@@ -149,6 +164,7 @@ Integer result = apply(square, 5);  // 25
 ```
 
 ### 3. **Cleaner Stream Operations**
+
 ```java
 // Without lambda (cumbersome)
 List<Integer> evens = new ArrayList<>();
@@ -165,6 +181,7 @@ List<Integer> evens = numbers.stream()
 ```
 
 ### 4. **Better for Event Handling**
+
 ```java
 // Old way
 button.setOnClickListener(new OnClickListener() {
@@ -178,6 +195,7 @@ button.setOnClickListener(v -> showMessage("Clicked!"));
 ```
 
 ### 5. **Enables Lazy Evaluation**
+
 ```java
 // Function is not executed until needed
 Supplier<Integer> expensive = () -> computeExpensiveValue();
@@ -196,17 +214,18 @@ A **Functional Interface** is an interface with exactly ONE abstract method. Lam
 
 ### Common Functional Interfaces:
 
-| Interface | Method | Purpose | Example |
-|-----------|--------|---------|---------|
-| `Runnable` | `run()` | Execute with no args/return | `() -> System.out.println("Hi")` |
-| `Supplier<T>` | `get()` | Supply a value | `() -> "Hello"` |
-| `Consumer<T>` | `accept(T)` | Accept value, no return | `x -> System.out.println(x)` |
-| `Function<T,R>` | `apply(T)` | Transform T to R | `x -> x * 2` |
-| `Predicate<T>` | `test(T)` | Test and return boolean | `x -> x > 5` |
-| `BiFunction<T,U,R>` | `apply(T,U)` | Two inputs, one output | `(x,y) -> x + y` |
-| `Comparator<T>` | `compare(T,T)` | Compare two values | `(a,b) -> a - b` |
+| Interface           | Method         | Purpose                     | Example                          |
+| ------------------- | -------------- | --------------------------- | -------------------------------- |
+| `Runnable`          | `run()`        | Execute with no args/return | `() -> System.out.println("Hi")` |
+| `Supplier<T>`       | `get()`        | Supply a value              | `() -> "Hello"`                  |
+| `Consumer<T>`       | `accept(T)`    | Accept value, no return     | `x -> System.out.println(x)`     |
+| `Function<T,R>`     | `apply(T)`     | Transform T to R            | `x -> x * 2`                     |
+| `Predicate<T>`      | `test(T)`      | Test and return boolean     | `x -> x > 5`                     |
+| `BiFunction<T,U,R>` | `apply(T,U)`   | Two inputs, one output      | `(x,y) -> x + y`                 |
+| `Comparator<T>`     | `compare(T,T)` | Compare two values          | `(a,b) -> a - b`                 |
 
 ### Creating Custom Functional Interface:
+
 ```java
 @FunctionalInterface
 public interface Calculator {
@@ -226,6 +245,7 @@ System.out.println(subtract.calculate(10, 5)); // 5
 ## 📈 Real-World Use Cases
 
 ### 1. **Sorting with Lambda**
+
 ```java
 List<String> names = Arrays.asList("Charlie", "Alice", "Bob", "Diana");
 
@@ -239,6 +259,7 @@ System.out.println(names);  // [Alice, Bob, Charlie, Diana]
 ```
 
 ### 2. **Stream Operations**
+
 ```java
 List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
@@ -251,6 +272,7 @@ numbers.stream()
 ```
 
 ### 3. **Thread Creation**
+
 ```java
 // Old way
 Thread t = new Thread(new Runnable() {
@@ -265,6 +287,7 @@ t.start();
 ```
 
 ### 4. **Event Handlers (GUI)**
+
 ```java
 // Button click handler
 button.setOnAction(event -> handleButtonClick());
@@ -274,6 +297,7 @@ label.setOnMouseEntered(event -> label.setStyle("-fx-background-color: yellow;")
 ```
 
 ### 5. **Callbacks**
+
 ```java
 public void loadData(String url, Consumer<String> callback) {
     // Simulate loading
@@ -286,6 +310,7 @@ loadData("api.example.com", result -> System.out.println(result));
 ```
 
 ### 6. **Filtering Data**
+
 ```java
 List<Employee> employees = getEmployees();
 
@@ -296,6 +321,7 @@ List<Employee> wellPaid = employees.stream()
 ```
 
 ### 7. **Method References (Shorthand Lambda)**
+
 ```java
 // Lambda version
 list.forEach(item -> System.out.println(item));
@@ -317,6 +343,7 @@ Method references are a shorthand for lambdas that call a specific method:
 ### Types of Method References:
 
 ### 1. **Static Method Reference**
+
 ```java
 // Lambda
 Function<Integer, String> toStr = x -> String.valueOf(x);
@@ -326,6 +353,7 @@ Function<Integer, String> toStr = String::valueOf;
 ```
 
 ### 2. **Instance Method Reference**
+
 ```java
 String str = "Hello";
 
@@ -337,6 +365,7 @@ Consumer<String> print = System.out::println;
 ```
 
 ### 3. **Constructor Reference**
+
 ```java
 // Lambda
 Supplier<ArrayList> supplier = () -> new ArrayList<>();
@@ -346,6 +375,7 @@ Supplier<ArrayList> supplier = ArrayList::new;
 ```
 
 ### 4. **Bound Instance Method Reference**
+
 ```java
 String str = "hello";
 
@@ -361,6 +391,7 @@ Function<String, Boolean> contains = str::contains;
 ## ⚠️ Common Mistakes
 
 ### ❌ Mistake 1: Complex Logic in Lambda
+
 ```java
 // ❌ Hard to read
 BiFunction<Integer, Integer, Integer> calculate = (a, b) -> {
@@ -382,6 +413,7 @@ BiFunction<Integer, Integer, Integer> calc = Calculation::calculate;
 ```
 
 ### ❌ Mistake 2: Variable Scope Issues
+
 ```java
 int x = 10;
 
@@ -395,6 +427,7 @@ Consumer<Integer> consumer = num -> System.out.println(x + num);
 ```
 
 ### ❌ Mistake 3: Wrong Functional Interface
+
 ```java
 // ❌ Predicate returns boolean, not prints
 list.stream()
@@ -411,6 +444,7 @@ list.stream()
 ```
 
 ### ❌ Mistake 4: Ignoring Exceptions
+
 ```java
 // ❌ Exception not handled
 list.forEach(item -> risky Operation(item));  // Throws exception
@@ -426,6 +460,7 @@ list.forEach(item -> {
 ```
 
 ### ❌ Mistake 5: Shadowing Variables
+
 ```java
 int x = 5;
 
@@ -441,13 +476,13 @@ list.forEach(item -> System.out.println(item));
 
 ## 🎓 Lambda vs Method References vs Anonymous Classes
 
-| Aspect | Anonymous Class | Lambda | Method Reference |
-|--------|-----------------|--------|------------------|
-| **Lines of Code** | Multiple | 1-3 | 1 |
-| **Readability** | Low | High | Highest |
-| **Performance** | OK | Good | Best |
-| **Reusability** | Once | Once | Can be reused |
-| **When to Use** | Complex logic | Simple behavior | Calling existing methods |
+| Aspect            | Anonymous Class | Lambda          | Method Reference         |
+| ----------------- | --------------- | --------------- | ------------------------ |
+| **Lines of Code** | Multiple        | 1-3             | 1                        |
+| **Readability**   | Low             | High            | Highest                  |
+| **Performance**   | OK              | Good            | Best                     |
+| **Reusability**   | Once            | Once            | Can be reused            |
+| **When to Use**   | Complex logic   | Simple behavior | Calling existing methods |
 
 ---
 
@@ -474,7 +509,9 @@ Comparator<String> comp3 = Comparator.comparingInt(String::length);
 ## 🎯 Important Lambda Rules
 
 ### 1. **Effectively Final Variables**
+
 Variables from outer scope must be `final` or effectively final:
+
 ```java
 int x = 10;  // Must not be reassigned
 list.forEach(item -> System.out.println(x + item));  // OK
@@ -482,14 +519,18 @@ x = 20;  // ERROR - x is no longer effectively final
 ```
 
 ### 2. **Return Type Inference**
+
 Return type is inferred from context:
+
 ```java
 // Compiler knows return type should be Integer
 Function<Integer, Integer> square = x -> x * x;
 ```
 
 ### 3. **Exception Handling**
+
 Unchecked exceptions can be thrown, checked exceptions need handling:
+
 ```java
 // ✅ Unchecked (RuntimeException) - OK
 Consumer<String> print = s -> System.out.println(s);
@@ -508,17 +549,18 @@ Consumer<String> read = s -> {
 
 ## 🎓 Key Takeaways
 
-| Aspect | Details |
-|--------|---------|
-| **What** | Anonymous function for concise code |
-| **When** | Short operations, callbacks, streams |
-| **Why** | Reduces boilerplate, enables functional programming |
-| **Replaces** | Anonymous inner classes |
-| **Requires** | Functional interface (1 abstract method) |
-| **Best For** | Simple single-line operations |
-| **Not For** | Complex multi-line logic |
+| Aspect       | Details                                             |
+| ------------ | --------------------------------------------------- |
+| **What**     | Anonymous function for concise code                 |
+| **When**     | Short operations, callbacks, streams                |
+| **Why**      | Reduces boilerplate, enables functional programming |
+| **Replaces** | Anonymous inner classes                             |
+| **Requires** | Functional interface (1 abstract method)            |
+| **Best For** | Simple single-line operations                       |
+| **Not For**  | Complex multi-line logic                            |
 
 ---
 
 ## 📖 Next Steps
+
 See the example files in this folder for practical implementations!

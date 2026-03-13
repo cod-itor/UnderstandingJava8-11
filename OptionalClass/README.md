@@ -1,7 +1,9 @@
 # Optional Class - Java 8
 
 ## 📚 Definition
+
 **Optional** is a public final class introduced in Java 8 to deal with `NullPointerException` gracefully. It's a container object that may or may not contain a non-null value. An Optional is either:
+
 - **Present**: Contains a non-null value
 - **Empty**: Contains no value
 
@@ -12,6 +14,7 @@
 ## 🎯 Why Optional Exists
 
 ### The Problem: NullPointerException
+
 Before Java 8, null checks were everywhere:
 
 ```java
@@ -26,12 +29,14 @@ if (person != null) {
 ```
 
 **Issues:**
+
 - Repetitive null checks (NullPointerException is the most common runtime error)
 - Deep nesting (pyramid of doom)
 - Boilerplate code
 - Easy to forget a null check
 
 ### The Solution: Optional
+
 ```java
 // ✅ Modern approach - concise and safe
 Optional<Person> person = getPersonById(1);
@@ -40,6 +45,7 @@ person.map(Person::getName)
 ```
 
 **Benefits:**
+
 - Explicit about "may contain no value"
 - No NullPointerException possible
 - Chainable operations
@@ -50,20 +56,25 @@ person.map(Person::getName)
 ## 🔧 Creating Optional Objects
 
 ### 1. **Optional.of(T value)** - Contains Non-Null Value
+
 ```java
 Optional<String> name = Optional.of("Alice");
 ```
+
 **Important:** Throws NullPointerException if value is null!
+
 ```java
 Optional<String> invalid = Optional.of(null);  // ❌ Throws NullPointerException
 ```
 
 ### 2. **Optional.empty()** - Empty Optional
+
 ```java
 Optional<String> empty = Optional.empty();
 ```
 
 ### 3. **Optional.ofNullable(T value)** - Safe Creation
+
 ```java
 Optional<String> name = Optional.ofNullable(possiblyNull);
 // Returns Optional.of(name) if not null
@@ -71,6 +82,7 @@ Optional<String> name = Optional.ofNullable(possiblyNull);
 ```
 
 ### 4. **Optional from Methods**
+
 ```java
 List<String> list = Arrays.asList("Apple", "Banana");
 
@@ -85,10 +97,11 @@ Optional<String> first = list.stream()
 ## 📊 Key Differences: Before and After Optional
 
 ### Before Java 8 (Traditional Approach)
+
 ```java
 public String getPersonName(int id) {
     Person person = findPerson(id);
-    
+
     // Multiple null checks - tedious!
     if (person != null) {
         Address address = person.getAddress();
@@ -104,6 +117,7 @@ public String getPersonName(int id) {
 ```
 
 ### After Java 8 (Optional Approach)
+
 ```java
 public String getPersonName(int id) {
     // Concise and safe!
@@ -120,7 +134,9 @@ public String getPersonName(int id) {
 ## 💡 Why You Need Optional
 
 ### 1. **Null Safety**
+
 Prevents NullPointerException through explicit handling:
+
 ```java
 // Traditional (risky)
 String name = person.getName();  // Could be null, could throw NPE
@@ -131,7 +147,9 @@ String name = person.map(Person::getName)
 ```
 
 ### 2. **API Design**
+
 Clearly communicates that a method might return no value:
+
 ```java
 // Traditional - unclear if null is possible
 public Person findById(int id) { ... }
@@ -141,7 +159,9 @@ public Optional<Person> findById(int id) { ... }
 ```
 
 ### 3. **Functional Programming**
+
 Enables chainable, declarative operations:
+
 ```java
 user.map(User::getEmail)
     .filter(email -> email.contains("@"))
@@ -149,7 +169,9 @@ user.map(User::getEmail)
 ```
 
 ### 4. **Reduces Defensive Programming**
+
 Less defensive null checking needed:
+
 ```java
 // You don't need to write:
 if (result != null && result.isValid()) { ... }
@@ -164,6 +186,7 @@ result.filter(r -> r.isValid())
 ## 🔄 Common Optional Operations
 
 ### **Checking if Present**
+
 ```java
 Optional<String> value = Optional.of("Hello");
 
@@ -182,6 +205,7 @@ value.ifPresent(System.out::println);
 ```
 
 ### **Getting Value**
+
 ```java
 Optional<String> value = Optional.of("Hello");
 
@@ -199,6 +223,7 @@ String result = value.orElseThrow(() -> new IllegalStateException("No value"));
 ```
 
 ### **Transforming Value**
+
 ```java
 Optional<String> name = Optional.of("alice");
 
@@ -216,6 +241,7 @@ Optional<String> withA = name.filter(n -> n.contains("a"));
 ```
 
 ### **Chaining Operations**
+
 ```java
 Optional<Person> person = findPerson(1);
 
@@ -231,6 +257,7 @@ person
 ## 📈 Real-World Use Cases
 
 ### 1. **Database Query Results**
+
 ```java
 // Traditional
 User user = userRepository.findById(123);
@@ -245,6 +272,7 @@ userRepository.findById(123)
 ```
 
 ### 2. **Configuration Values**
+
 ```java
 // Traditional
 String timeout = properties.get("timeout");
@@ -263,6 +291,7 @@ int value = properties.get("timeout")
 ```
 
 ### 3. **API Methods Returning Optional**
+
 ```java
 public class UserService {
     // Clear that result might be empty
@@ -283,6 +312,7 @@ userService.authenticate("alice", "password123")
 ```
 
 ### 4. **Filtering Collections**
+
 ```java
 List<String> emails = users.stream()
     .map(User::getEmail)
@@ -297,6 +327,7 @@ List<String> emails = users.stream()
 ```
 
 ### 5. **Method Chaining with Safe Navigation**
+
 ```java
 // Complex object navigation
 Optional<String> city = company.getAddress()
@@ -315,34 +346,38 @@ Optional<Double> latitude = person
 ## 🏗️ Optional Methods Overview
 
 ### **Terminal Operations** (Return non-Optional)
-| Method | Returns | When Used |
-|--------|---------|-----------|
-| `ifPresent(Consumer)` | void | Execute action if value exists |
-| `ifPresentOrElse()` | void | Execute action or default |
-| `get()` | T | Get value (throws if empty) |
-| `orElse(T)` | T | Get value or default |
-| `orElseGet(Supplier)` | T | Get value or compute |
-| `orElseThrow()` | T | Get value or throw |
+
+| Method                | Returns | When Used                      |
+| --------------------- | ------- | ------------------------------ |
+| `ifPresent(Consumer)` | void    | Execute action if value exists |
+| `ifPresentOrElse()`   | void    | Execute action or default      |
+| `get()`               | T       | Get value (throws if empty)    |
+| `orElse(T)`           | T       | Get value or default           |
+| `orElseGet(Supplier)` | T       | Get value or compute           |
+| `orElseThrow()`       | T       | Get value or throw             |
 
 ### **Intermediate Operations** (Return Optional)
-| Method | Returns | Use Case |
-|--------|---------|----------|
-| `map(Function)` | Optional | Transform value |
+
+| Method              | Returns  | Use Case                     |
+| ------------------- | -------- | ---------------------------- |
+| `map(Function)`     | Optional | Transform value              |
 | `flatMap(Function)` | Optional | Transform returning Optional |
-| `filter(Predicate)` | Optional | Keep if condition true |
+| `filter(Predicate)` | Optional | Keep if condition true       |
 
 ### **Utility Operations**
-| Method | Returns | Use Case |
-|--------|---------|----------|
-| `isPresent()` | boolean | Check if has value |
-| `isEmpty()` | boolean | Check if empty (Java 11+) |
-| `stream()` | Stream | Convert to stream (Java 9+) |
+
+| Method        | Returns | Use Case                    |
+| ------------- | ------- | --------------------------- |
+| `isPresent()` | boolean | Check if has value          |
+| `isEmpty()`   | boolean | Check if empty (Java 11+)   |
+| `stream()`    | Stream  | Convert to stream (Java 9+) |
 
 ---
 
 ## ⚠️ Common Mistakes
 
 ### ❌ Mistake 1: Using Optional for Everything
+
 ```java
 // ❌ Don't do this
 public Optional<String> getFirstName() {
@@ -356,9 +391,11 @@ public Optional<String> findNickname(User user) {
 ```
 
 ### ✅ Solution:
+
 Use Optional only for values that can actually be absent.
 
 ### ❌ Mistake 2: Using get() Without Checking
+
 ```java
 Optional<String> value = getValue();
 
@@ -367,6 +404,7 @@ String result = value.get();
 ```
 
 ### ✅ Solution:
+
 ```java
 // ✅ Use one of these instead
 String result = value.orElse("Default");
@@ -377,6 +415,7 @@ if (value.isPresent()) {
 ```
 
 ### ❌ Mistake 3: Not Using map/flatMap
+
 ```java
 // ❌ Verbose
 Optional<Person> person = findPerson(1);
@@ -387,6 +426,7 @@ if (person.isPresent()) {
 ```
 
 ### ✅ Solution:
+
 ```java
 // ✅ Concise
 Optional<String> email = findPerson(1)
@@ -394,6 +434,7 @@ Optional<String> email = findPerson(1)
 ```
 
 ### ❌ Mistake 4: Chaining Optionals Incorrectly
+
 ```java
 // ❌ Wrong - map returns Optional<Optional<T>>
 Optional<String> email = person.map(Person::getEmail);
@@ -405,6 +446,7 @@ Optional<String> email = person.flatMap(Person::getEmail);
 ```
 
 ### ❌ Mistake 5: Using Optional as Method Parameter
+
 ```java
 // ❌ Generally avoid this
 public void processUser(Optional<User> user) { ... }
@@ -424,36 +466,38 @@ public void processIfUserExists(Optional<User> user) {
 
 ## 📊 When to Use Optional vs Null Check
 
-| Scenario | Use Optional? | Why |
-|----------|---------------|-----|
-| Method might not have result | ✅ Yes | Clear intent |
-| Method parameter | ❌ No | Use separate method or default |
-| Always has value | ❌ No | Unnecessary wrapper |
-| Complex object graph | ✅ Yes | Safe navigation |
-| Collection element | ❌ No | Use Stream filtering |
-| Default values needed | ✅ Yes | Built-in support |
+| Scenario                     | Use Optional? | Why                            |
+| ---------------------------- | ------------- | ------------------------------ |
+| Method might not have result | ✅ Yes        | Clear intent                   |
+| Method parameter             | ❌ No         | Use separate method or default |
+| Always has value             | ❌ No         | Unnecessary wrapper            |
+| Complex object graph         | ✅ Yes        | Safe navigation                |
+| Collection element           | ❌ No         | Use Stream filtering           |
+| Default values needed        | ✅ Yes        | Built-in support               |
 
 ---
 
 ## 🔄 Optional vs NullPointerException
 
 ### The Old Way (Error-Prone)
+
 ```java
 public String getUserEmail(int userId) {
     User user = database.findUser(userId);        // Could be null
     if (user == null) return null;                 // Defensive check
-    
+
     Address address = user.getAddress();           // Could be null
     if (address == null) return null;
-    
+
     String email = address.getEmail();             // Could be null
     if (email == null) return "no-email";
-    
+
     return email;
 }
 ```
 
 ### The New Way (Robust)
+
 ```java
 public String getUserEmail(int userId) {
     return database.findUserOptional(userId)
@@ -467,16 +511,17 @@ public String getUserEmail(int userId) {
 
 ## 🎓 Key Takeaways
 
-| Aspect | Details |
-|--------|---------|
-| **What** | Container for possibly-absent values, replaces nulls |
-| **When** | Methods that may not have a result |
-| **Why** | Prevents NullPointerException, clearer code intent |
-| **Replaces** | Null checking and defensive programming |
-| **Not for** | Parameters, always-present values, collection elements |
-| **Best Practices** | Use map/flatMap/filter, avoid get() without checks |
+| Aspect             | Details                                                |
+| ------------------ | ------------------------------------------------------ |
+| **What**           | Container for possibly-absent values, replaces nulls   |
+| **When**           | Methods that may not have a result                     |
+| **Why**            | Prevents NullPointerException, clearer code intent     |
+| **Replaces**       | Null checking and defensive programming                |
+| **Not for**        | Parameters, always-present values, collection elements |
+| **Best Practices** | Use map/flatMap/filter, avoid get() without checks     |
 
 ---
 
 ## 📖 Next Steps
+
 See the example files in this folder for practical implementations!
