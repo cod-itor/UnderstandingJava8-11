@@ -6,14 +6,14 @@
 ┌─────────────────────────────────────────────────────────────┐
 │                      JAVA 8-11 FEATURES                     │
 ├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  FOUNDATION LAYER (Java 8)                                 │
+│                                                             │
+│  FOUNDATION LAYER (Java 8)                                  │
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │ Lambda Expressions                                   │   │
-│  │ () -> value | x -> x*2 | (a,b) -> a+b              │   │
-│  │ Replaces: Anonymous Inner Classes                   │   │
+│  │ () -> value | x -> x*2 | (a,b) -> a+b                │   │
+│  │ Replaces: Anonymous Inner Classes                    │   │
 │  └──────────────────────────────────────────────────────┘   │
-│             ↓           ↓           ↓           ↓          │
+│             ↓           ↓           ↓           ↓           │
 │  ┌──────────┴──────────┬────────────┴──────────┬────────┐   │
 │  │                     │                       │        │   │
 │  ▼                     ▼                       ▼        ▼   │
@@ -27,11 +27,11 @@
 │  ADVANCED LAYER (Java 14+)                              │   │
 │  ┌──────────────────────────────────────────────────────┐   │
 │  │ Pattern Matching                                     │   │
-│  │ if (obj instanceof String s)  // Java 16+          │   │
-│  │ switch (obj) case String s -> // Java 17+          │   │
-│  │ Replaces: instanceof + manual cast                  │   │
+│  │ if (obj instanceof String s)  // Java 16+            │   │
+│  │ switch (obj) case String s -> // Java 17+            │   │
+│  │ Replaces: instanceof + manual cast                   │   │
 │  └──────────────────────────────────────────────────────┘   │
-│                                                              │
+│                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -195,9 +195,9 @@ START: I need to process data
 TRADITIONAL CODE
 ┌─────────────────────────────────────┐
 │ for (int i = 0; i < n; i++) {       │
-│     if (condition) {                 │
-│         process(data[i]);            │
-│     }                                │
+│     if (condition) {                │
+│         process(data[i]);           │
+│     }                               │
 │ }                                   │
 │                                     │
 │ Complexity: HIGH                    │
@@ -307,12 +307,12 @@ Difficulty Level:
             ▲
             │     Pattern Matching
             │     Switch Patterns
-    HIGH   │     /\
+    HIGH    │     /\
             │    /  \
             │   /    \
             │  /      \
             │ /        \
-   MEDIUM  │ Stream    ╱╲
+   MEDIUM   │ Stream    ╱╲
             │ API      ╱  ╲
             │   ╱╲    ╱    \
             │  ╱  \  ╱      \
