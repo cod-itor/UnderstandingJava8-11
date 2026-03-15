@@ -59,19 +59,76 @@ public interface Transformer<T, R> {
 
 ## 🧰 Common Built-in Functional Interfaces (`java.util.function`)
 
-| Interface           | SAM                | Typical Use          | Example                 |
-| ------------------- | ------------------ | -------------------- | ----------------------- |
-| `Supplier<T>`       | `T get()`          | Produce a value      | Lazy config loader      |
-| `Consumer<T>`       | `void accept(T)`   | Act on a value       | Logging, sending emails |
-| `Function<T,R>`     | `R apply(T)`       | Transform a value    | DTO mapping             |
-| `Predicate<T>`      | `boolean test(T)`  | Boolean checks       | Validation, filters     |
-| `UnaryOperator<T>`  | `T apply(T)`       | Transform same type  | Normalize strings       |
-| `BinaryOperator<T>` | `T apply(T,T)`     | Combine two values   | Reduce sums             |
-| `BiFunction<T,U,R>` | `R apply(T,U)`     | Transform two inputs | Merge records           |
-| `BiConsumer<T,U>`   | `void accept(T,U)` | Act on two inputs    | Audit logging           |
-| `Comparator<T>`     | `int compare(T,T)` | Ordering             | Sorting collections     |
+### What returns what? (quick cheat table)
+
+| Interface           | SAM                | Returns…         | Use when you need to… | Mini example                       |
+| ------------------- | ------------------ | ---------------- | --------------------- | ---------------------------------- |
+| `Supplier<T>`       | `T get()`          | A value          | **Produce** something | `() -> UUID.randomUUID()`          |
+| `Consumer<T>`       | `void accept(T)`   | Nothing (`void`) | **Use** a value       | `log::info`                        |
+| `Function<T,R>`     | `R apply(T)`       | A different type | **Transform**         | `u -> u.getEmail()`                |
+| `Predicate<T>`      | `boolean test(T)`  | `true/false`     | **Decide** / filter   | `p -> p > 0`                       |
+| `UnaryOperator<T>`  | `T apply(T)`       | Same type        | **T -> T** transform  | `s -> s.trim()`                    |
+| `BinaryOperator<T>` | `T apply(T,T)`     | Same type        | **T,T -> T** combine  | `(a,b) -> a+b`                     |
+| `BiFunction<T,U,R>` | `R apply(T,U)`     | Any type         | **Mix two inputs**    | `(u, role) -> tag(u,role)`         |
+| `BiConsumer<T,U>`   | `void accept(T,U)` | Nothing (`void`) | **Use two inputs**    | `(msg,ctx) -> audit(msg,ctx)`      |
+| `Comparator<T>`     | `int compare(T,T)` | Ordering signal  | **Sort** / order      | `Comparator.comparing(User::name)` |
 
 ---
+
+## 🚀 How to pick and use effectively
+
+- Ask “Do I **produce**, **transform**, **decide**, **consume**, or **order**?” → match to Supplier / Function / Predicate / Consumer / Comparator.
+- Keep lambdas tiny; move real logic to named methods and use **method references** (`this::normalize`), especially in Streams.
+- Prefer **pure, stateless** lambdas; avoid mutating external state inside streams (use collectors instead).
+- Compose instead of nesting: `predicateA.and(predicateB)`, `fn1.andThen(fn2)`, `comparator.thenComparing(...)`.
+- Name intermediate variables to reveal intent:
+
+```java
+Predicate<User> isActive = User::active;
+Function<User, String> toEmail = User::email;
+List<String> activeEmails = users.stream().filter(isActive).map(toEmail).toList();
+```
+
+## 🔗 Streams + functional interfaces (tiny recipes)
+
+- **Filter booleans** (Predicate): `users.stream().filter(User::isActive)`
+- **Map/transform** (Function): `.map(User::getEmail)`
+- **Peek/use side-effects** (Consumer): `.peek(u -> log.info(u.getId()))`
+- **Reduce/combine** (BinaryOperator): `.reduce(0, Integer::sum)`
+- **Sort** (Comparator): `.sorted(Comparator.comparing(User::getJoinedAt))`
+- **Optional to stream**: `optionalUser.stream().map(User::getEmail)` (0 or 1 element)
+
+### End-to-end example
+
+```java
+Comparator<User> byStatusThenJoined = Comparator
+    .comparing(User::status)
+    .thenComparing(User::joinedAt);
+
+Function<User, String> toEmail = User::email;
+Predicate<User> isVerified = User::isVerified;
+
+List<String> emails = users.stream()
+    .filter(isVerified)      // Predicate
+    .sorted(byStatusThenJoined) // Comparator
+    .map(toEmail)            // Function
+    .toList();
+```
+
+## 📘 Tutorials & references (skim first)
+
+- Official Java docs: [`java.util.function` package](https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html)
+- Baeldung primer: [Guide to Java 8 Functional Interfaces](https://www.baeldung.com/java-8-functional-interfaces)
+- JetBrains guide: [Lambdas and Functional Interfaces in Java](https://www.jetbrains.com/guide/java/tutorials/lambdas/)
+- Stream cookbook: [Baeldung Stream API](https://www.baeldung.com/java-8-streams)
+
+## 🧭 If you write this… you get this (functional interfaces)
+
+- `Predicate<String> nonEmpty = s -> !s.isEmpty();` → `nonEmpty.test("hi")` gives `true`.
+- `Function<String,Integer> len = String::length;` → `len.apply("hey")` gives `3`.
+- `Consumer<String> logIt = System.out::println;` → `logIt.accept("ok")` prints `ok`.
+- `Supplier<UUID> ids = UUID::randomUUID;` → `ids.get()` yields a new UUID each call.
+- `Comparator<User> byName = Comparator.comparing(User::name);` → `.sorted(byName)` orders users by name.
 
 ## 🏗️ Creating Your Own Functional Interface
 
