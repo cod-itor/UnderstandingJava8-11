@@ -67,23 +67,70 @@ Stream<Integer> parallelStream = numbers.parallelStream();
 
 ### **Intermediate Operations** (Lazy - don't execute until terminal operation)
 
-- `filter()` - Filter elements based on condition
-- `map()` - Transform each element
-- `flatMap()` - Map and flatten results
+- `filter()` - Keep elements matching a condition
+- `map()` / `mapToInt|Long|Double()` - Transform elements
+- `flatMap()` - Map and flatten nested streams
 - `distinct()` - Remove duplicates
 - `sorted()` - Sort elements
-- `limit()` - Limit to N elements
-- `skip()` - Skip first N elements
+- `peek()` - Look at elements (for debugging/metrics) without changing them
+- `limit()` / `skip()` - Trim the stream
+
+```java
+List<Integer> nums = List.of(1, 2, 2, 3, 4, 5);
+List<Integer> processed = nums.stream()
+    .filter(n -> n % 2 == 0)      // keep evens -> 2,2,4
+    .distinct()                  // remove dup -> 2,4
+    .map(n -> n * 10)            // -> 20,40
+    .peek(n -> System.out.print(n + " ")) // prints: 20 40
+    .sorted(Collections.reverseOrder()) // -> 40,20
+    .skip(0).limit(2)            // keep both
+    .toList();                   // [40, 20]
+// Output while running: "20 40 " then processed=[40, 20]
+```
 
 ### **Terminal Operations** (Eager - triggers execution)
 
-- `collect()` - Collect results into a collection
-- `forEach()` - Process each element
-- `reduce()` - Combine all elements into one
+- `collect()` / `.toList()` - Materialize into a collection
+- `forEach()` / `forEachOrdered()` - Side effects / printing
+- `reduce()` - Combine to one value
 - `count()` - Count elements
-- `findFirst()` - Get first element
-- `allMatch()` / `anyMatch()` - Check conditions
+- `findFirst()` / `findAny()` - Grab one element
+- `anyMatch()` / `allMatch()` / `noneMatch()` - Boolean checks
+- `min()` / `max()` - Smallest / largest by comparator
 - `toArray()` - Convert to array
+
+```java
+List<Integer> nums = List.of(3, 1, 4, 1, 5);
+
+List<Integer> doubled = nums.stream()
+    .map(n -> n * 2)
+    .toList();                         // [6, 2, 8, 2, 10]
+
+long howMany = nums.stream().count();  // 5
+
+int sum = nums.stream()
+    .reduce(0, Integer::sum);          // 14
+
+Optional<Integer> firstOver3 = nums.stream()
+    .filter(n -> n > 3)
+    .findFirst();                      // Optional[4]
+
+boolean anyEven = nums.stream().anyMatch(n -> n % 2 == 0); // true
+
+int maxVal = nums.stream().max(Integer::compareTo).orElse(-1); // 5
+
+nums.stream().forEachOrdered(n -> System.out.print(n + " "));
+// Prints: "3 1 4 1 5 "
+```
+
+---
+
+## 🧾 Streams in one page (cheat sheet)
+
+- **Start**: `list.stream()`, `Stream.of(...)`, `Stream.empty()`, `Stream.generate(...)`, `Stream.iterate(...)`, `optional.stream()`.
+- **Shape (intermediate)**: `filter`, `map`, `flatMap`, `distinct`, `sorted`, `peek`, `limit/skip`, `mapToInt/Long/Double`.
+- **Finish (terminal)**: `toList`/`collect`, `reduce`, `count`, `sum/average` on primitives, `findFirst/findAny`, `anyMatch/allMatch/noneMatch`, `min/max`, `forEach`.
+- **Rules**: Build pipeline left→right, terminal op last, stream is one-shot.
 
 ---
 
@@ -142,10 +189,10 @@ The declarative approach makes code intent clear at first glance.
 
 ### 2. **Lazy Evaluation**
 
-Operations don't execute until a terminal operation is called, improving performance:
+Operations don't execute until a terminal operation is called:
 
-````java
-// Only creates stream, no execution
+```java
+// Only creates stream, no execution yet
 Stream<Integer> stream = numbers.stream()
     .filter(n -> {
         System.out.println("Filtering: " + n);
@@ -156,24 +203,25 @@ Stream<Integer> stream = numbers.stream()
         return n * 2;
     });
 
-// Only NOW does the processing happen
-    ```
-
-    ## 🧭 If you write this… you get this
-    - `list.stream().filter(n -> n % 2 == 0).toList();` → returns new list of evens; original list untouched.
-    - `list.stream().map(String::toUpperCase).toList();` → new list of uppercased strings.
-    - `list.stream().sorted().forEach(System.out::println);` → prints elements in sorted order.
-    - `orders.stream().mapToDouble(Order::amount).sum();` → a double total of all order amounts.
-    - `emails.stream().map(e -> e.split("@")[1]).distinct().sorted().toList();` → sorted unique domains.
-
-    ### Common Spring-ish writes and results
-    - `users.stream().filter(UserDto::isActive).map(UserDto::getEmail).toList();` → DTO processing: active users’ emails as a new list.
-    - `orders.stream().filter(o -> o.status()==Status.PAID).mapToDouble(OrderDto::amount).sum();` → total of paid orders.
-    - `headers.entrySet().stream().peek(e -> log.info(e.getKey()+": "+e.getValue())).count();` → logs each header, returns count.
-    - `Optional<UserDto> userOpt -> userOpt.stream().map(UserDto::getEmail).toList();` → 0 or 1 emails collected safely.
-    - `list.stream().filter(Objects::nonNull).map(String::trim).toList();` → cleans nulls and trims strings.
+// Work happens only when a terminal op runs
 stream.forEach(System.out::println);
-````
+```
+
+## 🧭 If you write this… you get this
+
+- `list.stream().filter(n -> n % 2 == 0).toList();` → new list of evens; original list untouched.
+- `list.stream().map(String::toUpperCase).toList();` → new list of uppercased strings.
+- `list.stream().sorted().forEach(System.out::println);` → prints elements in sorted order.
+- `orders.stream().mapToDouble(Order::amount).sum();` → double total of all order amounts.
+- `emails.stream().map(e -> e.split("@")[1]).distinct().sorted().toList();` → sorted unique domains.
+
+### Common Spring-ish writes and results
+
+- `users.stream().filter(UserDto::isActive).map(UserDto::getEmail).toList();` → active users’ emails as a new list.
+- `orders.stream().filter(o -> o.status()==Status.PAID).mapToDouble(OrderDto::amount).sum();` → total of paid orders.
+- `headers.entrySet().stream().peek(e -> log.info(e.getKey()+": "+e.getValue())).count();` → logs each header, returns count.
+- `Optional<UserDto> userOpt -> userOpt.stream().map(UserDto::getEmail).toList();` → 0 or 1 emails collected safely.
+- `list.stream().filter(Objects::nonNull).map(String::trim).toList();` → cleans nulls and trims strings.
 
 ### 3. **Chainability**
 
