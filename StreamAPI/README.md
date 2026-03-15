@@ -215,38 +215,38 @@ stream.filter(n -> n < 5).count();  // ❌ IllegalStateException!
 
 ## 🧭 Stream flow recipe (start → end)
 
-1) **Pick a source** (start here): `list.stream()`, `Stream.of(...)`, `Files.lines(...)`, `Optional.stream()` (0/1).
+1. **Pick a source** (start here): `list.stream()`, `Stream.of(...)`, `Files.lines(...)`, `Optional.stream()` (0/1).
 
-2) **Shape the data** with **intermediate ops** (any order, lazy):
-     - Filter early: `filter(...)` to drop noise first.
-     - Transform next: `map(...)` / `flatMap(...)` to reshape.
-     - De-dup: `distinct()` after map when you need uniqueness.
-     - Sort late: `sorted(...)` near the end (it’s expensive).
-     - Windowing: `skip/limit` early to trim work.
+2. **Shape the data** with **intermediate ops** (any order, lazy):
+   - Filter early: `filter(...)` to drop noise first.
+   - Transform next: `map(...)` / `flatMap(...)` to reshape.
+   - De-dup: `distinct()` after map when you need uniqueness.
+   - Sort late: `sorted(...)` near the end (it’s expensive).
+   - Windowing: `skip/limit` early to trim work.
 
-3) **Finish with ONE terminal op** (this ends the stream):
-     - Need a collection? `collect(Collectors.toList())` or `.toList()`.
-     - Need a single value? `reduce(...)`, `sum()`, `count()`, `findFirst()`.
-     - Need side effects only? `forEach(...)` (typically last; you can’t continue after).
+3. **Finish with ONE terminal op** (this ends the stream):
+   - Need a collection? `collect(Collectors.toList())` or `.toList()`.
+   - Need a single value? `reduce(...)`, `sum()`, `count()`, `findFirst()`.
+   - Need side effects only? `forEach(...)` (typically last; you can’t continue after).
 
-4) **Do not reuse** that stream. If you need another result, start a **new stream** from the source.
+4. **Do not reuse** that stream. If you need another result, start a **new stream** from the source.
 
 ### Quick patterns
 
 - **I need a filtered list:**
-    `list.stream().filter(pred).toList();`
+  `list.stream().filter(pred).toList();`
 
 - **I need transformed values:**
-    `list.stream().map(fn).toList();`
+  `list.stream().map(fn).toList();`
 
 - **I need a number (sum/count):**
-    `list.stream().mapToInt(...).sum();`
+  `list.stream().mapToInt(...).sum();`
 
 - **I need the first match:**
-    `list.stream().filter(pred).findFirst();`
+  `list.stream().filter(pred).findFirst();`
 
 - **I need sorted output:**
-    `list.stream().sorted(comparator).toList();`
+  `list.stream().sorted(comparator).toList();`
 
 Remember: only one terminal operation, and it must be last.
 

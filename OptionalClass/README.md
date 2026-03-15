@@ -202,6 +202,12 @@ if (!value.isEmpty()) {
 
 // Method 3: ifPresent() (Preferred)
 value.ifPresent(System.out::println);
+
+// Method 4: ifPresentOrElse() (Java 9+)
+value.ifPresentOrElse(
+    v -> System.out.println(v),   // present branch
+    () -> System.out.println("no value") // empty branch
+);
 ```
 
 ### **Getting Value**
@@ -212,7 +218,7 @@ Optional<String> value = Optional.of("Hello");
 // get() - Throws NoSuchElementException if empty
 String result = value.get();  // "Hello"
 
-// getOrElse() - Returns default if empty
+// orElse() - Returns default if empty
 String result = value.orElse("Default");  // "Hello"
 
 // orElseGet() - Computes default if empty
@@ -347,14 +353,14 @@ Optional<Double> latitude = person
 
 ### **Terminal Operations** (Return non-Optional)
 
-| Method                | Returns | When Used                      |
-| --------------------- | ------- | ------------------------------ |
-| `ifPresent(Consumer)` | void    | Execute action if value exists |
-| `ifPresentOrElse()`   | void    | Execute action or default      |
-| `get()`               | T       | Get value (throws if empty)    |
-| `orElse(T)`           | T       | Get value or default           |
-| `orElseGet(Supplier)` | T       | Get value or compute           |
-| `orElseThrow()`       | T       | Get value or throw             |
+| Method                | Returns | When Used                                     |
+| --------------------- | ------- | --------------------------------------------- |
+| `ifPresent(Consumer)` | void    | Execute action if present                     |
+| `ifPresentOrElse()`   | void    | Action if present, fallback runnable if empty |
+| `get()`               | T       | Get value (throws if empty)                   |
+| `orElse(T)`           | T       | Get value or default                          |
+| `orElseGet(Supplier)` | T       | Get value or compute                          |
+| `orElseThrow()`       | T       | Get value or throw                            |
 
 ### **Intermediate Operations** (Return Optional)
 
@@ -371,6 +377,21 @@ Optional<Double> latitude = person
 | `isPresent()` | boolean | Check if has value          |
 | `isEmpty()`   | boolean | Check if empty (Java 11+)   |
 | `stream()`    | Stream  | Convert to stream (Java 9+) |
+
+## 🧭 When to use which Optional method
+
+- **Need side-effects only**: `ifPresent` (just when present) or `ifPresentOrElse` (present vs empty branches) to avoid `isPresent`/`get` pairs.
+- **Need a value with default**: `orElse(default)` (eager) or `orElseGet(supplier)` (lazy/only compute when empty).
+- **Need to throw if absent**: `orElseThrow()` (no args) or `orElseThrow(exSupplier)` for custom exceptions.
+- **Need to transform**: `map` (value → value), `flatMap` (value → Optional), `filter` (keep or empty).
+- **Need to combine with streams**: `optional.stream()` to get 0 or 1 elements into a pipeline (Java 9+).
+
+### If you write this… you get this (Optional)
+
+- `opt.ifPresentOrElse(v -> save(v), () -> log.warn("missing"));` → Saves when present; logs warn when empty.
+- `opt.map(String::trim).filter(s -> !s.isEmpty()).orElse("n/a");` → Trimmed non-empty string or "n/a".
+- `opt.flatMap(User::getEmail).orElseThrow();` → Email or exception if missing.
+- `opt.stream().map(String::length).sum();` → 0 or the length, works nicely inside streams.
 
 ---
 
