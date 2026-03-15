@@ -114,17 +114,23 @@ task.run();
 **Issues:**
 
 - Very verbose (5 lines for simple logic)
+ //Verbose :using or expressed in more words than are needed.
 - Lots of boilerplate
 - Hard to read the actual logic
 - Type safe but cumbersome
 
 ## 🧭 If you write this… you get this
 
-- `() -> System.out.println("hi")` → a `Runnable` that, when run, prints `hi`.
-- `(a, b) -> a + b` assigned to `BiFunction<Integer,Integer,Integer>` → call `apply(2,3)` returns `5`.
-- `name -> name.toUpperCase()` assigned to `Function<String,String>` → `apply("bob")` returns `"BOB"`.
-- `(x, y) -> { int sum = x + y; return sum * 2; }` → multi-line lambda with local variables.
-- `Comparator.comparing(UserDto::joinedAt)` → a comparator you can pass to `sort`/`sorted`.
+- `() -> System.out.println("hi")`
+     | → a `Runnable` that, when run, prints `hi`.
+- `(a, b) -> a + b` assigned to `BiFunction<Integer,Integer,Integer>`
+| → call `apply(2,3)` returns `5`.
+- `name -> name.toUpperCase()` assigned to `Function<String,String>` 
+|→ `apply("bob")` returns `"BOB"`.
+- `(x, y) -> { int sum = x + y; return sum * 2; }`
+ |→ multi-line lambda with local variables.
+- `Comparator.comparing(UserDto::joinedAt)` 
+|→ a comparator you can pass to `sort`/`sorted`.
 
 ### Common Spring-ish writes and results
 
